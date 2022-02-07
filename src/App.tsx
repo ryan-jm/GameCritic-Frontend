@@ -1,25 +1,29 @@
+import './styles/globals.scss';
+import '@elastic/eui/dist/eui_theme_dark.css';
+
+import { EuiProvider } from '@elastic/eui';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
+import Error from './pages/Error';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Reviews from './pages/Reviews';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <EuiProvider colorMode="dark">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Error />} />
+        <Route path="/reviews">
+          <Route index element={<Reviews />} />
+        </Route>
+      </Routes>
+    </EuiProvider>
   );
 }
 
