@@ -1,0 +1,12 @@
+$euiColorPrimary: #ab05f2;
+$euiColorAccent: #0cf2b1;
+
+@import '@elastic/eui/src/themes/amsterdam/theme_dark';
+
+.link {
+  color: $euiColorAccent;
+}
+
+* a {
+  color: $euiColorAccent;
+}
