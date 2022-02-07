@@ -1,5 +1,6 @@
-import { EuiCard, EuiFlexGroup, EuiFlexItem, EuiImage } from '@elastic/eui';
-import React from 'react';
+import { EuiFlexGroup } from '@elastic/eui';
+
+import ReviewCard from './ReviewCard';
 
 type Review = {
   owner: string;
@@ -21,24 +22,7 @@ const ReviewList = ({ data }: IReviewProps) => {
     <EuiFlexGroup wrap style={{ marginTop: '3rem' }}>
       {data ? (
         data.map((review: Review) => {
-          return (
-            <EuiFlexItem key={review.review_id} grow={false}>
-              <EuiCard
-                textAlign="left"
-                image={
-                  <EuiImage
-                    src={review.review_img_url ? review.review_img_url : ''}
-                    alt={review.title}
-                    style={{ width: '100%', height: '30rem' }}
-                  />
-                }
-                title={review.title}
-                description="test"
-                onClick={() => {}}
-                style={{ width: '30rem' }}
-              />
-            </EuiFlexItem>
-          );
+          return <ReviewCard review={review} />;
         })
       ) : (
         <></>
