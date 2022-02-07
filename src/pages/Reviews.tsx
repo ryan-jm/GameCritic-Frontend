@@ -1,4 +1,4 @@
-import { EuiPage, EuiPageBody, EuiPageContentBody, EuiPagination } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiPage, EuiPageBody, EuiPageContentBody, EuiPagination } from '@elastic/eui';
 import axios from 'axios';
 import React from 'react';
 
@@ -59,15 +59,21 @@ const Reviews = () => {
       <EuiPageBody>
         <EuiPageContentBody restrictWidth={'75%'}>
           <ReviewList data={pageData} />
-          {pageData ? (
-            <EuiPagination
-              pageCount={pageCount}
-              activePage={activePage}
-              onPageClick={(activePage: number) => handlePageChange(activePage)}
-            />
-          ) : (
-            <></>
-          )}
+          <EuiFlexGroup justifyContent="spaceAround">
+            <EuiFlexItem grow={false}>
+              {pageData.length > 0 ? (
+                <EuiPagination
+                  pageCount={pageCount}
+                  activePage={activePage}
+                  onPageClick={(activePage: number) =>
+                    handlePageChange(activePage)
+                  }
+                />
+              ) : (
+                <></>
+              )}
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </EuiPageContentBody>
       </EuiPageBody>
     </EuiPage>
