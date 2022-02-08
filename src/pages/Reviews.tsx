@@ -2,10 +2,12 @@ import { EuiPage, EuiPageBody, EuiPageContentBody } from '@elastic/eui';
 import axios from 'axios';
 import React from 'react';
 
+import LoadingList from '../components/LoadingList';
 import ReviewList from '../components/ReviewList';
 
 const Reviews = () => {
   const [reviewData, setReviewData] = React.useState<Array<any>>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     axios
@@ -17,6 +19,7 @@ const Reviews = () => {
       })
       .then(({ data }) => {
         setReviewData(data?.reviews);
+        setIsLoading(() => !isLoading);
       });
   }, []);
 
@@ -24,7 +27,7 @@ const Reviews = () => {
     <EuiPage paddingSize="l">
       <EuiPageBody>
         <EuiPageContentBody restrictWidth={'75%'}>
-          <ReviewList data={reviewData} />
+          {isLoading ? <LoadingList /> : <ReviewList data={reviewData} />}
         </EuiPageContentBody>
       </EuiPageBody>
     </EuiPage>
