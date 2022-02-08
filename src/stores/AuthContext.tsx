@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { createContext, FC, useContext, useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 interface IUser {
   username: string;
@@ -72,6 +73,12 @@ export const AuthProvider: FC = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+export const RequireAuth = ({ children }: any) => {
+  const { isAuthed } = useAuth();
+
+  return isAuthed ? children : <Navigate to="/login" replace />;
 };
 
 export const useAuth = () => useContext(AuthContext);
