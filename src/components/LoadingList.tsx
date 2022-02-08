@@ -1,5 +1,4 @@
 import { EuiFlexGrid } from '@elastic/eui';
-import React, { ReactNode } from 'react';
 
 import LoadingCard from './LoadingCard';
 
