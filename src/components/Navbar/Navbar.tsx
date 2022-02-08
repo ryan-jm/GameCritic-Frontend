@@ -1,6 +1,6 @@
 import { EuiButton, EuiHeader, EuiHeaderLogo, EuiHeaderSection, EuiHeaderSectionItem } from '@elastic/eui';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../stores/AuthContext';
 import AppMenu from './AppMenu';
@@ -10,14 +10,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  React.useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem border="right">
-        <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
+        <Link to="/">
+          <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
+        </Link>
       </EuiHeaderSectionItem>
 
       <EuiHeaderSection side="right">
