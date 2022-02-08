@@ -7,12 +7,15 @@ import {
     useGeneratedHtmlId,
 } from '@elastic/eui';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AppMenu = () => {
   const headerAppPopoverId = useGeneratedHtmlId({ prefix: 'headerAppPopover' });
   const headerAppKeyPadMenuId = useGeneratedHtmlId({
     prefix: 'headerAppKeyPadMenu',
   });
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,15 +48,27 @@ const AppMenu = () => {
       closePopover={closeMenu}
     >
       <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
-        <EuiKeyPadMenuItem label="Reviews">
+        <EuiKeyPadMenuItem
+          label="Reviews"
+          isSelected={location.pathname.startsWith('/reviews')}
+          onClick={() => navigate('/reviews')}
+        >
           <EuiIcon type="discoverApp" size="xl" />
         </EuiKeyPadMenuItem>
 
-        <EuiKeyPadMenuItem label="Dashboard">
+        <EuiKeyPadMenuItem
+          label="Dashboard"
+          isSelected={location.pathname === '/'}
+          onClick={() => navigate('/dashboard')}
+        >
           <EuiIcon type="dashboardApp" size="xl" />
         </EuiKeyPadMenuItem>
 
-        <EuiKeyPadMenuItem label="Favourites">
+        <EuiKeyPadMenuItem
+          label="Favourites"
+          isSelected={location.pathname.startsWith('/favourites')}
+          onClick={() => navigate('/favourites')}
+        >
           <EuiIcon type="heartbeatApp" size="xl" />
         </EuiKeyPadMenuItem>
 
