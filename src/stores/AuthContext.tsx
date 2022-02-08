@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { createContext, FC, useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface IUser {
   username: string;
@@ -76,9 +76,14 @@ export const AuthProvider: FC = ({ children }) => {
 };
 
 export const RequireAuth = ({ children }: any) => {
+  const location = useLocation();
   const { isAuthed } = useAuth();
 
-  return isAuthed ? children : <Navigate to="/login" replace />;
+  return isAuthed ? (
+    children
+  ) : (
+    <Navigate to="/login" replace state={{ path: location.pathname }} />
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);
