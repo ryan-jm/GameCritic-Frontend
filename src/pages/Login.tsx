@@ -25,10 +25,9 @@ const Login = () => {
   const { state }: any = useLocation();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    login(username, password).then(() => {
-      navigate(state?.path ?? '/');
-    });
+  const handleLogin = async () => {
+    await login(username, password);
+    navigate(state?.path ?? '/');
   };
 
   React.useEffect(() => {
