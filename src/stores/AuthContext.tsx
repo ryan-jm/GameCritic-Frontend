@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { createContext, FC, useContext, useState } from 'react';
+import axios, { AxiosInstance } from 'axios';
+import { createContext, FC, useContext, useEffect, useState } from 'react';
 
 interface IUser {
   username: string;
@@ -11,12 +11,15 @@ interface IAuthContext {
   isAuthed: boolean;
   user?: IUser | null;
   token?: string;
-  login?: (username: string, password: string) => void;
-  logout?: (username: string) => void;
+  login: (username: string, password: string) => Promise<void>;
+  logout: (username: string) => Promise<void> | void;
+  client?: AxiosInstance | null;
 }
 
 const defaultState = {
   isAuthed: false,
+  login: async () => {},
+  logout: async () => {},
 };
 
 const AuthContext = createContext<IAuthContext>(defaultState);
@@ -25,6 +28,14 @@ export const AuthProvider: FC = ({ children }) => {
   const [isAuthed, setAuthStatus] = useState(defaultState.isAuthed);
   const [token, setToken] = useState('');
   const [user, setUser] = useState<IUser | null>(null);
+  const [client, setClient] = useState<AxiosInstance | null>(null);
+
+  useEffect(() => {
+    if (!client) {
+      const newClient = axios.create();
+      setClient(newClient);
+    }
+  }, []);
 
   const login = async (username: string, password: string) => {
     const {
@@ -34,11 +45,14 @@ export const AuthProvider: FC = ({ children }) => {
       password,
     });
     if (token) {
+      const newClient = axios.create({
+        baseURL: 'https://gamecritic.herokuapp.com/api/',
+        headers: { token: token },
+      });
+      setClient(newClient);
       const {
         data: { user },
-      } = await axios.get(
-        `https://gamecritic.herokuapp.com/api/users/${username}`
-      );
+      } = await newClient.get(`users/${username}`);
       if (user) {
         setUser(user);
         setToken(token);
@@ -52,7 +66,9 @@ export const AuthProvider: FC = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthed, token, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthed, token, user, login, logout, client }}
+    >
       {children}
     </AuthContext.Provider>
   );
