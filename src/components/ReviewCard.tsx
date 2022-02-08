@@ -1,4 +1,4 @@
-import { EuiButton, EuiButtonIcon, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, EuiImage, EuiSpacer } from '@elastic/eui';
+import { EuiButton, EuiButtonIcon, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, EuiSpacer } from '@elastic/eui';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +16,26 @@ export type Review = {
 interface IReviewCardProps {
   review: Review;
 }
+
+interface ICardImageProps {
+  src: string;
+  alt?: string;
+}
+
+const CardImage = ({ src, alt }: ICardImageProps) => {
+  return (
+    <div
+      aria-label={alt}
+      style={{
+        width: '100%',
+        height: '20rem',
+        overflow: 'hidden',
+        backgroundImage: `url(${src})`,
+        backgroundSize: 'cover',
+      }}
+    />
+  );
+};
 
 const ReviewCard = ({ review }: IReviewCardProps) => {
   const navigate = useNavigate();
@@ -39,28 +59,19 @@ const ReviewCard = ({ review }: IReviewCardProps) => {
   }, [reviewLiked]);
 
   return (
-    <EuiFlexItem key={review.review_id} grow={false}>
+    <EuiFlexItem key={review.review_id} grow style={{ width: '25%' }}>
       <EuiCard
         textAlign="left"
-        image={
-          <EuiImage
-            src={review.review_img_url ? review.review_img_url : ''}
-            alt={review.title}
-            style={{ width: '100%', height: '30rem' }}
-          />
-        }
+        image={<CardImage src={review.review_img_url ?? ''} />}
         title={review.title}
         description={
-          <p>
-            <span>
-              <EuiIcon type="faceHappy" /> {review.owner}
-            </span>
-          </p>
+          <span>
+            <EuiIcon type="faceHappy" /> {review.owner}
+          </span>
         }
-        style={{ width: '30rem' }}
         footer={
           <>
-            <p>Posted: {new Date(review.created_at).toDateString()}</p>
+            <span>Posted: {new Date(review.created_at).toDateString()}</span>
             <EuiSpacer size="m" />
             <EuiFlexGroup justifyContent="spaceBetween">
               <EuiFlexItem>
