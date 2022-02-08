@@ -15,6 +15,7 @@ export type Review = {
 
 interface IReviewCardProps {
   review: Review;
+  favourite: boolean;
 }
 
 interface ICardImageProps {
@@ -37,10 +38,10 @@ const CardImage = ({ src, alt }: ICardImageProps) => {
   );
 };
 
-const ReviewCard = ({ review }: IReviewCardProps) => {
+const ReviewCard = ({ review, favourite }: IReviewCardProps) => {
   const navigate = useNavigate();
   const [votes, setVotes] = React.useState<number>(0);
-  const [reviewLiked, setReviewLiked] = React.useState(false);
+  const [reviewLiked, setReviewLiked] = React.useState(favourite);
 
   const handleLike = (id: number) => {
     setReviewLiked((prev) => !prev);
