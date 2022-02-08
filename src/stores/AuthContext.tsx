@@ -12,14 +12,17 @@ interface IAuthContext {
   isAuthed: boolean;
   user?: IUser | null;
   token?: string;
-  login: (username: string, password: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<AxiosInstance>;
   logout: (username: string) => Promise<void> | void;
-  client?: AxiosInstance | null;
 }
+
+const defaultClient = axios.create({
+  baseURL: 'https://gamecritic.herokuapp.com/api/',
+});
 
 const defaultState = {
   isAuthed: false,
-  login: async () => {},
+  login: async () => defaultClient,
   logout: async () => {},
 };
 
@@ -29,14 +32,6 @@ export const AuthProvider: FC = ({ children }) => {
   const [isAuthed, setAuthStatus] = useState(defaultState.isAuthed);
   const [token, setToken] = useState('');
   const [user, setUser] = useState<IUser | null>(null);
-  const [client, setClient] = useState<AxiosInstance | null>(null);
-
-  useEffect(() => {
-    if (!client) {
-      const newClient = axios.create();
-      setClient(newClient);
-    }
-  }, [client]);
 
   const login = async (username: string, password: string) => {
     const {
@@ -50,7 +45,6 @@ export const AuthProvider: FC = ({ children }) => {
         baseURL: 'https://gamecritic.herokuapp.com/api/',
         headers: { token: token },
       });
-      setClient(newClient);
       const {
         data: { user },
       } = await newClient.get(`users/${username}`);
@@ -58,21 +52,23 @@ export const AuthProvider: FC = ({ children }) => {
         setUser(user);
         setToken(token);
         setAuthStatus(true);
+        return newClient;
       }
     }
+
+    return axios.create({
+      baseURL: 'https://gamecritic.herokuapp.com/api/',
+    });
   };
 
   const logout = (username: string) => {
     setAuthStatus(false);
     setToken('');
     setUser(null);
-    setClient(null);
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthed, token, user, login, logout, client }}
-    >
+    <AuthContext.Provider value={{ isAuthed, token, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
