@@ -1,7 +1,8 @@
-import { EuiButton, EuiButtonIcon, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, EuiImage } from '@elastic/eui';
+import { EuiButton, EuiButtonIcon, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, EuiImage, EuiSpacer } from '@elastic/eui';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-type Review = {
+export type Review = {
   owner: string;
   comment_count: string;
   created_at: string;
@@ -17,16 +18,17 @@ interface IReviewCardProps {
 }
 
 const ReviewCard = ({ review }: IReviewCardProps) => {
+  const navigate = useNavigate();
   const [votes, setVotes] = React.useState<number>(0);
   const [reviewLiked, setReviewLiked] = React.useState(false);
 
-  const handleLike = () => {
+  const handleLike = (id: number) => {
     setReviewLiked((prev) => !prev);
   };
 
   React.useEffect(() => {
     if (review.votes) setVotes(review.votes);
-  }, []);
+  }, [review.votes]);
 
   React.useEffect(() => {
     if (reviewLiked) {
@@ -49,27 +51,40 @@ const ReviewCard = ({ review }: IReviewCardProps) => {
         }
         title={review.title}
         description={
-          <span>
-            <EuiIcon type="faceHappy" /> {review.owner}
-          </span>
+          <p>
+            <span>
+              <EuiIcon type="faceHappy" /> {review.owner}
+            </span>
+          </p>
         }
         style={{ width: '30rem' }}
         footer={
-          <EuiFlexGroup justifyContent="spaceBetween">
-            <EuiFlexItem>
-              <span>
-                <EuiButtonIcon
-                  iconType={!reviewLiked ? 'starEmpty' : 'starFilled'}
-                  color="accent"
-                  onClick={() => handleLike()}
-                />{' '}
-                {votes}
-              </span>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiButton>Go to review</EuiButton>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <>
+            <p>Posted: {new Date(review.created_at).toDateString()}</p>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup justifyContent="spaceBetween">
+              <EuiFlexItem>
+                <span>
+                  <EuiButtonIcon
+                    aria-label={`Likes for review ${review.review_id}`}
+                    iconType={!reviewLiked ? 'starEmpty' : 'starFilled'}
+                    color="accent"
+                    onClick={() => handleLike(review.review_id)}
+                  />{' '}
+                  {votes}
+                </span>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiButton
+                  fill
+                  onClick={() => navigate(`/reviews/${review.review_id}`)}
+                  iconType="sortRight"
+                >
+                  Go to review
+                </EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </>
         }
       />
     </EuiFlexItem>
