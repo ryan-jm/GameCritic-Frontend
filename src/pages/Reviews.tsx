@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { EuiPage, EuiPageBody, EuiPageContentBody } from '@elastic/eui';
 import axios from 'axios';
 import React from 'react';
