@@ -64,6 +64,9 @@ export const AuthProvider: FC = ({ children }) => {
 
   const logout = (username: string) => {
     setAuthStatus(false);
+    setToken('');
+    setUser(null);
+    setClient(null);
   };
 
   return (
