@@ -11,21 +11,26 @@ import Home from './pages/Home';
 import IndividualReview from './pages/IndividualReview';
 import Login from './pages/Login';
 import Reviews from './pages/Reviews';
+import { AuthProvider } from './stores/AuthContext';
 
 function App() {
   return (
-    <EuiProvider colorMode="dark">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Error />} />
-        <Route path="/reviews">
-          <Route index element={<Reviews />} />
-          <Route path=":review_id" element={<IndividualReview />} />
-        </Route>
-      </Routes>
-    </EuiProvider>
+    <div className="App">
+      <EuiProvider colorMode="dark">
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Error />} />
+            <Route path="/reviews">
+              <Route index element={<Reviews />} />
+              <Route path=":review_id" element={<IndividualReview />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
+      </EuiProvider>
+    </div>
   );
 }
 
