@@ -1,33 +1,51 @@
-import { EuiHeader, EuiHeaderLink, EuiHeaderLinks, EuiHeaderLogo, EuiHeaderSectionItem } from '@elastic/eui';
+import { EuiButton, EuiHeader, EuiHeaderLink, EuiHeaderLinks, EuiHeaderLogo, EuiHeaderSectionItem } from '@elastic/eui';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { useAuth } from '../stores/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  React.useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem border="right">
-        <EuiHeaderLogo>GameCritic</EuiHeaderLogo>
+        <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
       <EuiHeaderSectionItem>
-        <EuiHeaderLinks aria-label="Navigation links">
-          <Link to="/">
-            <EuiHeaderLink isActive={location.pathname === '/'}>
-              Home
-            </EuiHeaderLink>
-          </Link>
+        {user ? (
+          <EuiHeaderLinks aria-label="Navigation links">
+            <Link to="/">
+              <EuiHeaderLink isActive={location.pathname === '/'}>
+                Home
+              </EuiHeaderLink>
+            </Link>
 
-          <Link to="/reviews">
-            <EuiHeaderLink isActive={location.pathname.startsWith('/reviews')}>
-              Reviews
+            <Link to="/reviews">
+              <EuiHeaderLink
+                isActive={location.pathname.startsWith('/reviews')}
+              >
+                Reviews
+              </EuiHeaderLink>
+            </Link>
+            <EuiHeaderLink
+              isActive={location.pathname.startsWith('/categories')}
+            >
+              Categories
             </EuiHeaderLink>
-          </Link>
-          <EuiHeaderLink isActive={location.pathname.startsWith('/categories')}>
-            Categories
-          </EuiHeaderLink>
-        </EuiHeaderLinks>
+          </EuiHeaderLinks>
+        ) : (
+          <EuiButton color="accent" size="s" onClick={() => navigate('/login')}>
+            Login
+          </EuiButton>
+        )}
       </EuiHeaderSectionItem>
     </EuiHeader>
   );
