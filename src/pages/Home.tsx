@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Hero from '../assets/hero_image.svg';
-import CallToAction from '../components/CallToAction';
+import CallToAction from '../components/Common/CallToAction';
 
 const Home = () => {
   return (

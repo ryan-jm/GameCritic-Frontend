@@ -2,7 +2,7 @@ import { EuiButton, EuiHeader, EuiHeaderLink, EuiHeaderLinks, EuiHeaderLogo, Eui
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../stores/AuthContext';
+import { useAuth } from '../../stores/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();

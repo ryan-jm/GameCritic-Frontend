@@ -5,7 +5,7 @@ import { EuiProvider } from '@elastic/eui';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import IndividualReview from './pages/IndividualReview';

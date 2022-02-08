@@ -3,8 +3,8 @@ import { EuiPage, EuiPageBody, EuiPageContentBody } from '@elastic/eui';
 import axios from 'axios';
 import React from 'react';
 
-import LoadingList from '../components/LoadingList';
-import ReviewList from '../components/ReviewList';
+import LoadingList from '../components/Reviews/LoadingList';
+import ReviewList from '../components/Reviews/ReviewList';
 
 const Reviews = () => {
   const [reviewData, setReviewData] = React.useState<Array<any>>([]);
