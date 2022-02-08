@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Comments from '../components/Comments';
+
 type Category =
   | 'push-your-luck'
   | 'dexterity'
@@ -43,25 +45,33 @@ const IndividualReview = () => {
   }, [review_id]);
 
   return (
-    <EuiPage paddingSize="none">
+    <EuiPage paddingSize="none" style={{ marginTop: '3rem' }}>
       <EuiPageBody paddingSize="l">
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
-          paddingSize="none"
+          paddingSize="l"
         >
           <EuiEmptyPrompt
             icon={
               <EuiImage
                 size="fullWidth"
                 src={review?.review_img_url ?? ''}
-                alt=""
+                alt="Picture of..."
               />
             }
             title={<span>{review?.title}</span>}
             body={<span>{review?.review_body}</span>}
             actions={<span>Test</span>}
           />
+        </EuiPageContent>
+        <EuiPageContent
+          verticalPosition="center"
+          horizontalPosition="center"
+          paddingSize="l"
+          style={{ marginTop: '2rem' }}
+        >
+          <Comments reviewId={review?.review_id} />
         </EuiPageContent>
       </EuiPageBody>
     </EuiPage>
