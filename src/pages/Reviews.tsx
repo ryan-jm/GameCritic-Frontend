@@ -1,4 +1,4 @@
-import { EuiFlexGroup, EuiFlexItem, EuiPage, EuiPageBody, EuiPageContentBody, EuiPagination } from '@elastic/eui';
+import { EuiPage, EuiPageBody, EuiPageContentBody } from '@elastic/eui';
 import axios from 'axios';
 import React from 'react';
 
@@ -6,9 +6,6 @@ import ReviewList from '../components/ReviewList';
 
 const Reviews = () => {
   const [reviewData, setReviewData] = React.useState<Array<any>>([]);
-  const [pageCount, setPageCount] = React.useState<number | undefined>();
-  const [activePage, setActivePage] = React.useState<number>(0);
-  const [pageData, setPageData] = React.useState<Array<any>>([]);
 
   React.useEffect(() => {
     axios
@@ -20,60 +17,14 @@ const Reviews = () => {
       })
       .then(({ data }) => {
         setReviewData(data?.reviews);
-        setPageCount(data?.reviews?.length / 8);
       });
   }, []);
-
-  React.useEffect(() => {
-    if (reviewData) {
-      if (activePage === 0 && reviewData?.length > 0) {
-        return setPageData(() => {
-          const currentData = reviewData.slice(
-            activePage * 8,
-            (activePage + 1) * 8
-          );
-          return currentData;
-        });
-      }
-    }
-  }, [reviewData, pageCount, activePage]);
-
-  const handlePageChange = (page: number) => {
-    setActivePage(page);
-    switch (page) {
-      case 0:
-        return setPageData(() => {
-          const currentData = reviewData.slice(0, 8);
-          return currentData;
-        });
-      default:
-        return setPageData(() => {
-          const currentData = reviewData.slice(page * 8, (page + 1) * 8);
-          return currentData;
-        });
-    }
-  };
 
   return (
     <EuiPage paddingSize="l">
       <EuiPageBody>
         <EuiPageContentBody restrictWidth={'75%'}>
-          <ReviewList data={pageData} />
-          <EuiFlexGroup justifyContent="spaceAround">
-            <EuiFlexItem grow={false}>
-              {pageData.length > 0 ? (
-                <EuiPagination
-                  pageCount={pageCount}
-                  activePage={activePage}
-                  onPageClick={(activePage: number) =>
-                    handlePageChange(activePage)
-                  }
-                />
-              ) : (
-                <></>
-              )}
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <ReviewList data={reviewData} />
         </EuiPageContentBody>
       </EuiPageBody>
     </EuiPage>
