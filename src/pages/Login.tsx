@@ -13,21 +13,22 @@ import {
     EuiSpacer,
 } from '@elastic/eui';
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import LoginIllu from '../assets/login.svg';
 import { useAuth } from '../stores/AuthContext';
 
 const Login = () => {
-  const { user, login, client } = useAuth();
+  const { user, login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { state }: any = useLocation();
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    console.log('Hello');
-    await login(username, password);
-    // console.log(login);
-    // console.log(user);
-    // console.log(client);
+  const handleLogin = () => {
+    login(username, password).then(() => {
+      navigate(state?.path ?? '/');
+    });
   };
 
   React.useEffect(() => {
@@ -37,16 +38,16 @@ const Login = () => {
   return (
     <EuiPage paddingSize="l">
       <EuiPageBody style={{ marginTop: '4rem' }}>
-        <EuiFlexGroup
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
+        <EuiPageContent
+          verticalPosition="center"
+          horizontalPosition="center"
+          paddingSize="l"
+          style={{ marginTop: '2rem', paddingBottom: '2rem' }}
         >
-          <EuiPageContent
-            verticalPosition="center"
-            horizontalPosition="center"
-            paddingSize="l"
-            style={{ marginTop: '2rem', paddingBottom: '2rem' }}
+          <EuiFlexGroup
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
           >
             <EuiCallOut title="Wait..." color="danger" iconType="alert">
               This login form is currently not using secure auth; please use the
@@ -91,8 +92,8 @@ const Login = () => {
                 </EuiFlexGroup>
               </EuiFormRow>
             </EuiForm>
-          </EuiPageContent>
-        </EuiFlexGroup>
+          </EuiFlexGroup>
+        </EuiPageContent>
       </EuiPageBody>
     </EuiPage>
   );
