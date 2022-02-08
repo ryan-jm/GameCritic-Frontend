@@ -10,9 +10,8 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import IndividualReview from './pages/IndividualReview';
 import Login from './pages/Login';
-import RequireAuth from './pages/RequireAuth';
 import Reviews from './pages/Reviews';
-import { AuthProvider } from './stores/AuthContext';
+import { AuthProvider, RequireAuth } from './stores/AuthContext';
 
 function App() {
   return (
