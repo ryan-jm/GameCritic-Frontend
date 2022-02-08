@@ -36,7 +36,7 @@ export const AuthProvider: FC = ({ children }) => {
       const newClient = axios.create();
       setClient(newClient);
     }
-  }, []);
+  }, [client]);
 
   const login = async (username: string, password: string) => {
     const {
