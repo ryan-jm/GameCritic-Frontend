@@ -10,6 +10,7 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import IndividualReview from './pages/IndividualReview';
 import Login from './pages/Login';
+import RequireAuth from './pages/RequireAuth';
 import Reviews from './pages/Reviews';
 import { AuthProvider } from './stores/AuthContext';
 
@@ -24,8 +25,22 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Error />} />
             <Route path="/reviews">
-              <Route index element={<Reviews />} />
-              <Route path=":review_id" element={<IndividualReview />} />
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <Reviews />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path=":review_id"
+                element={
+                  <RequireAuth>
+                    <IndividualReview />
+                  </RequireAuth>
+                }
+              />
             </Route>
           </Routes>
         </AuthProvider>
