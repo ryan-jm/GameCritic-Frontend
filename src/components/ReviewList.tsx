@@ -1,4 +1,4 @@
-import { EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
+import { EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
 import React from 'react';
 
 import ReviewCard from './ReviewCard';
@@ -49,15 +49,15 @@ const ReviewList = ({ data }: IReviewProps) => {
 
   return (
     <>
-      <EuiFlexGroup wrap style={{ marginTop: '3rem' }}>
+      <EuiFlexGrid columns={4} style={{ marginTop: '3rem' }}>
         {pageData ? (
           pageData.map((review: Review) => {
-            return <ReviewCard review={review} />;
+            return <ReviewCard review={review} key={review.review_id} />;
           })
         ) : (
           <></>
         )}
-      </EuiFlexGroup>
+      </EuiFlexGrid>
       <EuiFlexGroup justifyContent="spaceAround">
         <EuiFlexItem grow={false}>
           <EuiPagination
