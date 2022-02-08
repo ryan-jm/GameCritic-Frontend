@@ -16,9 +16,10 @@ type Review = {
 
 interface IReviewProps {
   data: Array<Review>;
+  favourites?: Array<any>;
 }
 
-const ReviewList = ({ data }: IReviewProps) => {
+const ReviewList = ({ data, favourites }: IReviewProps) => {
   const [pageCount, setPageCount] = React.useState<number | undefined>();
   const [activePage, setActivePage] = React.useState<number>(0);
   const [pageData, setPageData] = React.useState<Array<any>>([]);
@@ -52,7 +53,19 @@ const ReviewList = ({ data }: IReviewProps) => {
       <EuiFlexGrid columns={4} style={{ marginTop: '3rem' }}>
         {pageData ? (
           pageData.map((review: Review) => {
-            return <ReviewCard review={review} key={review.review_id} />;
+            let favourite = false;
+            favourites?.forEach((vote) => {
+              if (vote.review === review.review_id) {
+                favourite = true;
+              }
+            });
+            return (
+              <ReviewCard
+                review={review}
+                key={review.review_id}
+                favourite={favourite}
+              />
+            );
           })
         ) : (
           <></>
