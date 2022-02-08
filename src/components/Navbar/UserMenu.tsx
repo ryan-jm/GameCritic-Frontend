@@ -78,9 +78,7 @@ const UserMenu = () => {
             <EuiFlexGroup>
               <EuiFlexItem>
                 <EuiFlexGroup justifyContent="spaceBetween">
-                  <EuiFlexItem grow={false}>
-                    <EuiLink>Edit profile</EuiLink>
-                  </EuiFlexItem>
+                  <p></p>
 
                   <EuiFlexItem grow={false}>
                     <EuiLink>Log out</EuiLink>
