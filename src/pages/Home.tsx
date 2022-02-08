@@ -2,6 +2,7 @@ import { EuiEmptyPrompt, EuiImage, EuiPage, EuiPageBody, EuiPageContent, EuiTitl
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Hero from '../assets/hero_image.svg';
 import CallToAction from '../components/CallToAction';
 
 const Home = () => {
@@ -16,12 +17,12 @@ const Home = () => {
         >
           <EuiEmptyPrompt
             layout="horizontal"
-            icon={<EuiImage size="fullWidth" src="" alt="" />}
+            icon={<EuiImage size="fullWidth" src={Hero} alt="" />}
             title={<span>GameCritic</span>}
             body={
               <span>
-                The place where individuals connect, converse, and create
-                stories together.
+                The place where individuals discuss the hottest new game
+                releases.
               </span>
             }
             paddingSize="l"
