@@ -10,11 +10,13 @@ import {
     useGeneratedHtmlId,
 } from '@elastic/eui';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../stores/AuthContext';
 
 const UserMenu = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const headerUserPopoverId = useGeneratedHtmlId({
     prefix: 'headerUserPopover',
@@ -27,6 +29,11 @@ const UserMenu = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout(user?.username ?? '');
+    navigate('/');
   };
 
   const button = (
@@ -81,7 +88,7 @@ const UserMenu = () => {
                   <p></p>
 
                   <EuiFlexItem grow={false}>
-                    <EuiLink>Log out</EuiLink>
+                    <EuiLink onClick={handleLogout}>Log out</EuiLink>
                   </EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
