@@ -2,20 +2,13 @@ import { EuiButton, EuiButtonIcon, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export type Review = {
-  owner: string;
-  comment_count: string;
-  created_at: string;
-  category: string;
-  review_id: number;
-  review_img_url?: string;
-  title: string;
-  votes?: number;
-};
+import * as API from '../../api/Reviews';
+import { useAuth } from '../../stores/AuthContext';
+import { Review, ReviewAction, ReviewActionKind } from '../../types/review.types';
 
 interface IReviewCardProps {
   review: Review;
-  favourite: boolean;
+  dispatch: React.Dispatch<ReviewAction>;
 }
 
 interface ICardImageProps {
@@ -38,26 +31,54 @@ const CardImage = ({ src, alt }: ICardImageProps) => {
   );
 };
 
-const ReviewCard = ({ review, favourite }: IReviewCardProps) => {
+const ReviewCard = ({ review, dispatch }: IReviewCardProps) => {
   const navigate = useNavigate();
-  const [votes, setVotes] = React.useState<number>(0);
-  const [reviewLiked, setReviewLiked] = React.useState(favourite);
+  const { user } = useAuth();
+  const [votes, setVotes] = React.useState<number>(review.votes);
+  const [reviewLiked, setReviewLiked] = React.useState(review.hasVoted);
 
-  const handleLike = (id: number) => {
-    setReviewLiked((prev) => !prev);
+  const handleLike = () => {
+    API.validate(user?.token ?? '');
+    if (!reviewLiked) {
+      dispatch({ type: ReviewActionKind.VOTE_ADD, payload: review });
+      setReviewLiked(true);
+      API.addVote(user, review);
+    } else if (reviewLiked) {
+      dispatch({ type: ReviewActionKind.VOTE_REMOVE, payload: review });
+      setReviewLiked(false);
+      API.removeVote(user, review);
+    }
   };
 
   React.useEffect(() => {
     if (review.votes) setVotes(review.votes);
-  }, [review.votes]);
+  }, [review.votes, review.hasVoted]);
 
-  React.useEffect(() => {
-    if (reviewLiked) {
-      setVotes((prev) => (prev += 1));
-    } else {
-      setVotes((prev) => (prev -= 1));
-    }
-  }, [reviewLiked]);
+  // React.useEffect(() => {
+  //   if (reviewLiked) {
+  //     setVotes((prev) => (prev += 1));
+  //     axios
+  //       .post(
+  //         `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes`,
+  //         { review_id: review.review_id },
+  //         { headers: { token: token ?? '' } }
+  //       )
+  //       .then((res) => {
+  //         const {
+  //           data: { vote },
+  //         } = res;
+  //         setFavourites((prev) => {
+  //           return [...prev, vote];
+  //         });
+  //       });
+  //   } else {
+  //     setVotes((prev) => (prev -= 1));
+  //     axios.delete(
+  //       `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes/${review.review_id}`,
+  //       { headers: { token: token ?? '' } }
+  //     );
+  //   }
+  // }, [review.review_id, reviewLiked, setFavourites, token, user?.username]);
 
   return (
     <EuiFlexItem key={review.review_id} grow style={{ width: '25%' }}>
@@ -81,7 +102,7 @@ const ReviewCard = ({ review, favourite }: IReviewCardProps) => {
                     aria-label={`Likes for review ${review.review_id}`}
                     iconType={!reviewLiked ? 'starEmpty' : 'starFilled'}
                     color="accent"
-                    onClick={() => handleLike(review.review_id)}
+                    onClick={() => handleLike()}
                   />{' '}
                   {votes}
                 </span>

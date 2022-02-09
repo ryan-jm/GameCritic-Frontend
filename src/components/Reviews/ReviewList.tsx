@@ -1,25 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
 import React from 'react';
 
+import { IReviewProps, Review } from '../../types/review.types';
 import ReviewCard from './ReviewCard';
 
-type Review = {
-  owner: string;
-  comment_count: string;
-  created_at: string;
-  category: string;
-  review_id: number;
-  review_img_url?: string;
-  title: string;
-  votes?: number;
-};
-
-interface IReviewProps {
-  data: Array<Review>;
-  favourites?: Array<any>;
-}
-
-const ReviewList = ({ data, favourites }: IReviewProps) => {
+const ReviewList = ({ data, dispatch }: IReviewProps) => {
   const [pageCount, setPageCount] = React.useState<number | undefined>();
   const [activePage, setActivePage] = React.useState<number>(0);
   const [pageData, setPageData] = React.useState<Array<any>>([]);
@@ -30,7 +16,7 @@ const ReviewList = ({ data, favourites }: IReviewProps) => {
       const currentData = data.slice(0, 8);
       return currentData;
     });
-  }, [data, data?.length]);
+  }, [data?.length]);
 
   const handlePageChange = (page: number) => {
     setActivePage(page);
@@ -53,18 +39,8 @@ const ReviewList = ({ data, favourites }: IReviewProps) => {
       <EuiFlexGrid columns={4} style={{ marginTop: '3rem' }}>
         {pageData ? (
           pageData.map((review: Review) => {
-            let favourite = false;
-            favourites?.forEach((vote) => {
-              if (vote.review === review.review_id) {
-                favourite = true;
-              }
-            });
             return (
-              <ReviewCard
-                review={review}
-                key={review.review_id}
-                favourite={favourite}
-              />
+              <ReviewCard review={review} key={review.review_id} dispatch={dispatch} />
             );
           })
         ) : (

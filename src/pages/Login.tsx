@@ -1,25 +1,25 @@
 import {
-    EuiButton,
-    EuiCallOut,
-    EuiFieldPassword,
-    EuiFieldText,
-    EuiFlexGroup,
-    EuiForm,
-    EuiFormRow,
-    EuiImage,
-    EuiPage,
-    EuiPageBody,
-    EuiPageContent,
-    EuiSpacer,
+  EuiButton,
+  EuiCallOut,
+  EuiFieldPassword,
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiForm,
+  EuiFormRow,
+  EuiImage,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiSpacer,
 } from '@elastic/eui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import LoginIllu from '../assets/login.svg';
 import { useAuth } from '../stores/AuthContext';
 
 const Login = () => {
-  const { user, login } = useAuth();
+  const { login, user } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { state }: any = useLocation();
@@ -27,12 +27,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     await login(username, password);
-    navigate(state?.path ?? '/');
   };
 
-  React.useEffect(() => {
-    console.log(user);
-  }, [user]);
+  useEffect(() => {
+    if (user?.token) {
+      navigate(state?.path ?? '/');
+    }
+  }, [navigate, state?.path, user]);
 
   return (
     <EuiPage paddingSize="l">
@@ -43,14 +44,10 @@ const Login = () => {
           paddingSize="l"
           style={{ marginTop: '2rem', paddingBottom: '2rem' }}
         >
-          <EuiFlexGroup
-            justifyContent="center"
-            alignItems="center"
-            direction="column"
-          >
+          <EuiFlexGroup justifyContent="center" alignItems="center" direction="column">
             <EuiCallOut title="Wait..." color="danger" iconType="alert">
-              This login form is currently not using secure auth; please use the
-              following username and password:
+              This login form is currently not using secure auth; please use the following
+              username and password:
               <ul>
                 <li>
                   <b>Username:</b> test-account
