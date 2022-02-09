@@ -1,5 +1,4 @@
 import { EuiEmptyPrompt, EuiImage, EuiPage, EuiPageBody, EuiPageContent, EuiTitle } from '@elastic/eui';
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Hero from '../assets/hero_image.svg';
@@ -21,8 +20,7 @@ const Home = () => {
             title={<span>GameCritic</span>}
             body={
               <span>
-                The place where individuals discuss the hottest new game
-                releases.
+                The place where individuals discuss the hottest new game releases.
               </span>
             }
             paddingSize="l"

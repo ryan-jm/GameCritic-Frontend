@@ -54,32 +54,6 @@ const ReviewCard = ({ review, dispatch }: IReviewCardProps) => {
     if (review.votes) setVotes(review.votes);
   }, [review.votes, review.hasVoted]);
 
-  // React.useEffect(() => {
-  //   if (reviewLiked) {
-  //     setVotes((prev) => (prev += 1));
-  //     axios
-  //       .post(
-  //         `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes`,
-  //         { review_id: review.review_id },
-  //         { headers: { token: token ?? '' } }
-  //       )
-  //       .then((res) => {
-  //         const {
-  //           data: { vote },
-  //         } = res;
-  //         setFavourites((prev) => {
-  //           return [...prev, vote];
-  //         });
-  //       });
-  //   } else {
-  //     setVotes((prev) => (prev -= 1));
-  //     axios.delete(
-  //       `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes/${review.review_id}`,
-  //       { headers: { token: token ?? '' } }
-  //     );
-  //   }
-  // }, [review.review_id, reviewLiked, setFavourites, token, user?.username]);
-
   return (
     <EuiFlexItem key={review.review_id} grow style={{ width: '25%' }}>
       <EuiCard

@@ -1,5 +1,4 @@
 import { EuiButton, EuiHeader, EuiHeaderLogo, EuiHeaderSection, EuiHeaderSectionItem } from '@elastic/eui';
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../stores/AuthContext';
@@ -30,11 +29,7 @@ const Navbar = () => {
           </>
         ) : (
           <EuiHeaderSectionItem>
-            <EuiButton
-              color="accent"
-              size="s"
-              onClick={() => navigate('/login')}
-            >
+            <EuiButton color="accent" size="s" onClick={() => navigate('/login')}>
               Login
             </EuiButton>
           </EuiHeaderSectionItem>
@@ -45,6 +40,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// location.pathname === '/'
-// isActive={location.pathname.startsWith('/reviews')}

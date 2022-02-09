@@ -1,5 +1,4 @@
 import { EuiCard, EuiFlexItem, EuiLoadingContent, EuiSpacer } from '@elastic/eui';
-import React from 'react';
 
 const LoadingCard = () => {
   return (
