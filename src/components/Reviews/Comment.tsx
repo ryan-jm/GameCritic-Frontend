@@ -4,8 +4,11 @@ import {
   EuiPanel,
   EuiSpacer,
   EuiText,
-  EuiEmptyPrompt,
+  EuiTextArea,
+  EuiButtonIcon,
   EuiAvatar,
+  EuiHorizontalRule,
+  EuiFlexGroup,
 } from "@elastic/eui";
 import axios from "axios";
 import React from "react";
@@ -71,6 +74,12 @@ const Comment = ({ reviewId }: ICommentProps) => {
           })}
         />
       )}
+      <EuiHorizontalRule size="half" />
+      <EuiTextArea fullWidth placeholder="Write a comment..." />
+      <EuiSpacer />
+      <EuiFlexGroup justifyContent="flexEnd">
+        <EuiButtonIcon iconType="arrowRight" display="empty" color="accent" />
+      </EuiFlexGroup>
     </EuiPanel>
   );
 };
