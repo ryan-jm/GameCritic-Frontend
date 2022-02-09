@@ -1,22 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { IUser } from '../../types/auth.types';
-import { Review } from '../../types/review.types';
+import { IUser } from "../../types/auth.types";
+import { Comment, Review } from "../../types/review.types";
 
 type APIUser = IUser | null | undefined;
 
 const client = axios.create({
-  baseURL: 'https://gamecritic.herokuapp.com/api/',
+  baseURL: "https://gamecritic.herokuapp.com/api/",
 });
 
 export function validate(token: string) {
-  client.defaults.headers.common['token'] = token;
+  client.defaults.headers.common["token"] = token;
 }
 
 export async function fetchAllReviews() {
   const {
     data: { reviews },
-  } = await client.get('reviews?limit=1000');
+  } = await client.get("reviews?limit=1000");
   return reviews;
 }
 
@@ -30,7 +30,9 @@ export async function fetchVotes(user: APIUser) {
 }
 
 export async function addVote(user: APIUser, review: Review) {
-  await client.post(`users/${user?.username}/votes`, { review_id: review.review_id });
+  await client.post(`users/${user?.username}/votes`, {
+    review_id: review.review_id,
+  });
 }
 
 export async function removeVote(user: APIUser, review: Review) {
@@ -42,4 +44,26 @@ export async function getSingleReview(review_id: string) {
     data: { review },
   } = await client.get(`reviews/${review_id}`);
   return review;
+}
+
+export async function getUser(username: string) {
+  const {
+    data: { user },
+  } = await client.get(`users/${username}`);
+  return user;
+}
+
+export async function getReviewComments(review_id: number | undefined) {
+  const {
+    data: { comments },
+  } = await client.get(`reviews/${review_id}/comments`);
+
+  const finalComments = await Promise.all(
+    comments.map(async (comment: Comment) => {
+      const user = await getUser(comment.author);
+      return { ...comment, avatar_url: user?.avatar_url };
+    })
+  );
+
+  return finalComments;
 }
