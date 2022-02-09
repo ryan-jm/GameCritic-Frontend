@@ -8,6 +8,12 @@ import * as dataHelper from '../services/data';
 import { useAuth } from '../stores/AuthContext';
 import { ReviewAction, ReviewActionKind, ReviewState } from '../types/review.types';
 
+/**
+ * It takes a state and an action, and returns a new state
+ * state - The current state of the review reducer.
+ * action - The action that triggered the reducer.
+ * returns -  The return value of the reducer is the new state of the application.
+ */
 const ReviewReducer = (state: ReviewState, action: ReviewAction) => {
   const { type, payload, overwrite } = action;
 
@@ -37,6 +43,8 @@ const Reviews = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [reviewState, dispatch] = React.useReducer(ReviewReducer, []);
 
+  /* If the user is logged in, fetch all reviews and votes from the API. Then, format the reviews and
+  votes into a single object. Finally, replace the reviews in the store with the formatted reviews. */
   React.useEffect(() => {
     const fetchReviews = async () => {
       API.validate(user?.token ?? '');

@@ -37,6 +37,10 @@ const ReviewCard = ({ review, dispatch }: IReviewCardProps) => {
   const [votes, setVotes] = React.useState<number>(review.votes);
   const [reviewLiked, setReviewLiked] = React.useState(review.hasVoted);
 
+  /*
+   * If the review is not liked, add a vote to the review. If the review is liked, remove the vote from
+   * the review
+   */
   const handleLike = () => {
     API.validate(user?.token ?? '');
     if (!reviewLiked) {
@@ -50,6 +54,7 @@ const ReviewCard = ({ review, dispatch }: IReviewCardProps) => {
     }
   };
 
+  /* Checking to see if the review has votes. If it does, it sets the votes state to the review votes. */
   React.useEffect(() => {
     if (review.votes) setVotes(review.votes);
   }, [review.votes, review.hasVoted]);

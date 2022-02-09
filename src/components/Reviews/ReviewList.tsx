@@ -10,6 +10,7 @@ const ReviewList = ({ data, dispatch }: IReviewProps) => {
   const [activePage, setActivePage] = React.useState<number>(0);
   const [pageData, setPageData] = React.useState<Array<any>>([]);
 
+  /* When the data changes, set the page count and page data. */
   React.useEffect(() => {
     setPageCount(data?.length / 8);
     return setPageData(() => {
