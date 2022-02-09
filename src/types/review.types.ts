@@ -1,7 +1,7 @@
 export enum ReviewActionKind {
-  VOTE_ADD = 'VOTE_ADD',
-  VOTE_REMOVE = 'VOTE_REMOVE',
-  REPLACE_ALL = 'REPLACE_ALL',
+  VOTE_ADD = "VOTE_ADD",
+  VOTE_REMOVE = "VOTE_REMOVE",
+  REPLACE_ALL = "REPLACE_ALL",
 }
 
 export type Review = {
@@ -40,11 +40,20 @@ export interface ICardImageProps {
   alt?: string;
 }
 
+export type Comment = {
+  comment_id: number;
+  body: string;
+  author: string;
+  review_id: number;
+  created_at: string;
+  avatar_url?: string;
+};
+
 export type Category =
-  | 'push-your-luck'
-  | 'dexterity'
-  | 'hidden-roles'
-  | 'strategy'
-  | 'roll-and-write'
-  | 'deck-building'
-  | 'engine-building';
+  | "push-your-luck"
+  | "dexterity"
+  | "hidden-roles"
+  | "strategy"
+  | "roll-and-write"
+  | "deck-building"
+  | "engine-building";
