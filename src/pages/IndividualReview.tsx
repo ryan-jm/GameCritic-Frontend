@@ -1,48 +1,26 @@
 import { EuiEmptyPrompt, EuiImage, EuiPage, EuiPageBody, EuiPageContent } from '@elastic/eui';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Comments from '../components/Reviews/Comments';
-
-type Category =
-  | 'push-your-luck'
-  | 'dexterity'
-  | 'hidden-roles'
-  | 'strategy'
-  | 'roll-and-write'
-  | 'deck-building'
-  | 'engine-building';
-
-interface IReview {
-  owner: string;
-  title: string;
-  review_id: number;
-  designer: string;
-  review_img_url: string;
-  category: Category;
-  review_body: string;
-  created_at: string;
-  votes: number;
-  commment_count: string | number;
-}
+import * as API from '../api/Reviews';
+import Comment from '../components/Reviews/Comment';
+import { useAuth } from '../stores/AuthContext';
+import { Review } from '../types/review.types';
 
 const IndividualReview = () => {
   let { review_id } = useParams();
-  const [review, setReview] = useState<IReview | null>(null);
+  const { user } = useAuth();
+  const [review, setReview] = useState<Review | null>(null);
 
   useEffect(() => {
-    axios
-      .get(`https://gamecritic.herokuapp.com/api/reviews/${review_id}`, {
-        headers: {
-          token:
-            'eyJhbGciOiJIUzI1NiJ9.dGVzdC11c2VycGFzc3dvcmQxMjM.AZnzREXVU9h-dZMICCE594oITjj53xgnxx2L_g_XLBk',
-        },
-      })
-      .then(({ data }) => {
-        setReview(data.review);
-      });
-  }, [review_id]);
+    const fetchReview = async () => {
+      API.validate(user?.token ?? '');
+      const review = await API.getSingleReview(review_id ?? '1');
+      setReview(review);
+    };
+
+    fetchReview();
+  }, [review_id, user?.token]);
 
   return (
     <EuiPage paddingSize="none" style={{ marginTop: '3rem' }}>
@@ -71,7 +49,7 @@ const IndividualReview = () => {
           paddingSize="l"
           style={{ marginTop: '2rem' }}
         >
-          <Comments reviewId={review?.review_id} />
+          <Comment reviewId={review?.review_id} />
         </EuiPageContent>
       </EuiPageBody>
     </EuiPage>
