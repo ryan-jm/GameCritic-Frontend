@@ -22,10 +22,12 @@ const Login = () => {
   const { login, user } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { state }: any = useLocation();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setIsLoading(true);
     await login(username, password);
   };
 
@@ -82,8 +84,14 @@ const Login = () => {
                   style={{ marginTop: '0.5em' }}
                   gutterSize="l"
                 >
-                  <EuiButton color="accent" fill onClick={handleLogin}>
-                    Login
+                  <EuiButton
+                    color="accent"
+                    fill={!isLoading}
+                    onClick={handleLogin}
+                    isLoading={isLoading}
+                    iconSide="right"
+                  >
+                    {isLoading ? '' : 'Login'}
                   </EuiButton>
                 </EuiFlexGroup>
               </EuiFormRow>
