@@ -8,9 +8,10 @@ export type Review = {
   owner: string;
   comment_count: string;
   created_at: string;
-  category: string;
+  category: Category;
   review_id: number;
   review_img_url?: string;
+  review_body?: string;
   title: string;
   votes: number;
   hasVoted?: boolean;
@@ -38,3 +39,12 @@ export interface ICardImageProps {
   src: string;
   alt?: string;
 }
+
+export type Category =
+  | 'push-your-luck'
+  | 'dexterity'
+  | 'hidden-roles'
+  | 'strategy'
+  | 'roll-and-write'
+  | 'deck-building'
+  | 'engine-building';
