@@ -1,54 +1,76 @@
-import { EuiCommentList, EuiPanel, EuiText } from '@elastic/eui';
-import axios from 'axios';
-import React from 'react';
-
-interface IComment {
-  comment_id: number;
-  author: string;
-  review_id: number;
-  votes: number;
-  created_at: string;
-  body: string;
-}
+import {
+  EuiCommentList,
+  EuiLoadingContent,
+  EuiPanel,
+  EuiSpacer,
+  EuiText,
+  EuiEmptyPrompt,
+  EuiAvatar,
+} from "@elastic/eui";
+import axios from "axios";
+import React from "react";
+import * as API from "../../api/Reviews";
+import { useAuth } from "../../stores/AuthContext";
+import { Comment as IComment } from "../../types/review.types";
 
 interface ICommentProps {
   reviewId: number | undefined;
 }
 
 const Comment = ({ reviewId }: ICommentProps) => {
-  const [reviewComments, setReviewComments] = React.useState<Array<IComment> | null>(
-    null
-  );
+  const { user } = useAuth();
+  const [reviewComments, setReviewComments] =
+    React.useState<Array<IComment> | null>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    axios
-      .get(`https://gamecritic.herokuapp.com/api/reviews/${reviewId}/comments`, {
-        headers: {
-          token:
-            'eyJhbGciOiJIUzI1NiJ9.dGVzdC11c2VycGFzc3dvcmQxMjM.AZnzREXVU9h-dZMICCE594oITjj53xgnxx2L_g_XLBk',
-        },
-      })
-      .then(({ data }) => {
-        setReviewComments(data.comments);
-      });
+    const fetchComments = async () => {
+      API.validate(user?.token ?? "");
+      const comments = await API.getReviewComments(reviewId);
+      setReviewComments(comments);
+      setIsLoading(false);
+    };
+
+    fetchComments();
   }, [reviewId]);
 
   return (
-    <EuiPanel paddingSize="l" hasShadow={false} color="subdued">
-      <EuiCommentList
-        comments={reviewComments?.map((comment) => {
-          return {
-            username: comment.author,
-            event: 'commented',
-            timestamp: `on ${new Date(comment?.created_at).toDateString()}`,
-            children: (
-              <EuiText size="s">
-                <p>{comment.body}</p>
-              </EuiText>
-            ),
-          };
-        })}
-      />
+    <EuiPanel
+      paddingSize="l"
+      hasShadow={false}
+      color="subdued"
+      style={{ width: "100%" }}
+    >
+      {isLoading ? (
+        <p style={{ width: "35rem" }}>
+          <EuiLoadingContent lines={2} />
+          <EuiSpacer size="l" />
+          <EuiLoadingContent lines={2} />
+          <EuiSpacer size="l" />
+          <EuiLoadingContent lines={2} />
+        </p>
+      ) : (
+        <EuiCommentList
+          comments={reviewComments?.map((comment) => {
+            return {
+              username: comment.author,
+              event: "commented",
+              timestamp: `on ${new Date(comment?.created_at).toDateString()}`,
+              timelineIcon: (
+                <EuiAvatar
+                  imageUrl={comment?.avatar_url ?? ""}
+                  name={comment.author}
+                />
+              ),
+              children: (
+                <EuiText size="s">
+                  <p>{comment.body}</p>
+                </EuiText>
+              ),
+            };
+          })}
+        />
+      )}
     </EuiPanel>
   );
 };
