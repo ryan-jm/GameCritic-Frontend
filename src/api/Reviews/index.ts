@@ -30,14 +30,16 @@ export async function fetchVotes(user: APIUser) {
 }
 
 export async function addVote(user: APIUser, review: Review) {
-  await client.post(
-    `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes`,
-    { review_id: review.review_id }
-  );
+  await client.post(`users/${user?.username}/votes`, { review_id: review.review_id });
 }
 
 export async function removeVote(user: APIUser, review: Review) {
-  await client.delete(
-    `https://gamecritic.herokuapp.com/api/users/${user?.username}/votes/${review.review_id}`
-  );
+  await client.delete(`users/${user?.username}/votes/${review.review_id}`);
+}
+
+export async function getSingleReview(review_id: string) {
+  const {
+    data: { review },
+  } = await client.get(`reviews/${review_id}`);
+  return review;
 }
