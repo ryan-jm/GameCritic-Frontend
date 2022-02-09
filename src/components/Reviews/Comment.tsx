@@ -15,21 +15,19 @@ interface ICommentProps {
   reviewId: number | undefined;
 }
 
-const Comments = ({ reviewId }: ICommentProps) => {
-  const [reviewComments, setReviewComments] =
-    React.useState<Array<IComment> | null>(null);
+const Comment = ({ reviewId }: ICommentProps) => {
+  const [reviewComments, setReviewComments] = React.useState<Array<IComment> | null>(
+    null
+  );
 
   React.useEffect(() => {
     axios
-      .get(
-        `https://gamecritic.herokuapp.com/api/reviews/${reviewId}/comments`,
-        {
-          headers: {
-            token:
-              'eyJhbGciOiJIUzI1NiJ9.dGVzdC11c2VycGFzc3dvcmQxMjM.AZnzREXVU9h-dZMICCE594oITjj53xgnxx2L_g_XLBk',
-          },
-        }
-      )
+      .get(`https://gamecritic.herokuapp.com/api/reviews/${reviewId}/comments`, {
+        headers: {
+          token:
+            'eyJhbGciOiJIUzI1NiJ9.dGVzdC11c2VycGFzc3dvcmQxMjM.AZnzREXVU9h-dZMICCE594oITjj53xgnxx2L_g_XLBk',
+        },
+      })
       .then(({ data }) => {
         setReviewComments(data.comments);
       });
@@ -55,4 +53,4 @@ const Comments = ({ reviewId }: ICommentProps) => {
   );
 };
 
-export default Comments;
+export default Comment;
