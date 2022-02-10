@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import * as API from '../../api/Reviews';
 import { useAuth } from '../../stores/AuthContext';
-import { Review, ReviewAction, ReviewActionKind } from '../../types/review.types';
+import { IReviewAction, Review, ReviewActionKind } from '../../types/review.types';
 
 interface IReviewCardProps {
   review: Review;
-  dispatch: React.Dispatch<ReviewAction>;
+  dispatch: React.Dispatch<IReviewAction>;
 }
 
 interface ICardImageProps {
