@@ -10,7 +10,6 @@ import {
   EuiHorizontalRule,
   EuiFlexGroup,
 } from "@elastic/eui";
-import axios from "axios";
 import React from "react";
 import * as API from "../../api/Reviews";
 import { useAuth } from "../../stores/AuthContext";
@@ -35,7 +34,7 @@ const Comment = ({ reviewId }: ICommentProps) => {
     };
 
     fetchComments();
-  }, [reviewId]);
+  }, [reviewId, user?.token]);
 
   return (
     <EuiPanel
