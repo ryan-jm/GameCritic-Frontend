@@ -1,21 +1,12 @@
-import {
-  EuiCard,
-  EuiEmptyPrompt,
-  EuiAvatar,
-  EuiImage,
-  EuiPage,
-  EuiPageBody,
-  EuiPageContent,
-  EuiText,
-} from "@elastic/eui";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { EuiAvatar, EuiCard, EuiEmptyPrompt, EuiImage, EuiPage, EuiPageBody, EuiPageContent, EuiText } from '@elastic/eui';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import * as API from "../api/Reviews";
-import Comment from "../components/Reviews/Comment";
-import { useAuth } from "../stores/AuthContext";
-import { IUser } from "../types/auth.types";
-import { Review } from "../types/review.types";
+import * as API from '../api/Reviews';
+import Comment from '../components/Reviews/Comment';
+import { useAuth } from '../stores/AuthContext';
+import { IUser } from '../types/auth.types';
+import { Review } from '../types/review.types';
 
 const IndividualReview = () => {
   let { review_id } = useParams();
@@ -25,8 +16,8 @@ const IndividualReview = () => {
 
   useEffect(() => {
     const fetchReview = async () => {
-      API.validate(user?.token ?? "");
-      const review = await API.getSingleReview(review_id ?? "1");
+      API.validate(user?.token ?? '');
+      const review = await API.getSingleReview(review_id ?? '1');
       const reviewPoster = await API.getUser(review.owner);
       setReview(review);
       setReviewPoster(reviewPoster);
@@ -36,21 +27,21 @@ const IndividualReview = () => {
   }, [review_id, user?.token]);
 
   return (
-    <EuiPage paddingSize="none" style={{ marginTop: "3rem" }}>
+    <EuiPage paddingSize="none" style={{ marginTop: '3rem' }}>
       <EuiPageBody paddingSize="l">
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="l"
-          style={{ width: "40%" }}
+          style={{ width: '40%' }}
         >
           <EuiCard
             layout="horizontal"
             icon={
               <EuiAvatar
                 size="m"
-                imageUrl={reviewPoster?.avatar_url ?? ""}
-                name={review?.owner ?? ""}
+                imageUrl={reviewPoster?.avatar_url ?? ''}
+                name={review?.owner ?? ''}
               />
             }
             title=""
@@ -58,7 +49,7 @@ const IndividualReview = () => {
             description={
               <p>
                 <i>
-                  Posted by {review?.owner} on{" "}
+                  Posted by {review?.owner} on{' '}
                   {new Date(review?.created_at ?? 0).toDateString()}
                 </i>
               </p>
@@ -68,7 +59,7 @@ const IndividualReview = () => {
             icon={
               <EuiImage
                 size="fullWidth"
-                src={review?.review_img_url ?? ""}
+                src={review?.review_img_url ?? ''}
                 alt="Picture of..."
               />
             }
@@ -78,19 +69,18 @@ const IndividualReview = () => {
               </EuiText>
             }
             body={
-              <EuiText size="relative" style={{ textAlign: "justify" }}>
+              <EuiText size="relative" style={{ textAlign: 'justify' }}>
                 <p>{review?.review_body}</p>
               </EuiText>
             }
-            actions={<span>Test</span>}
-            style={{ marginTop: "-2rem" }}
+            style={{ marginTop: '-2rem' }}
           />
         </EuiPageContent>
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="l"
-          style={{ marginTop: "2rem", width: "40%" }}
+          style={{ marginTop: '2rem', width: '40%' }}
         >
           <Comment reviewId={review?.review_id} />
         </EuiPageContent>
