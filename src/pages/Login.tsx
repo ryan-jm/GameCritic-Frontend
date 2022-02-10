@@ -44,10 +44,10 @@ const Login = () => {
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="l"
-          style={{ marginTop: '2rem', paddingBottom: '2rem' }}
+          style={{ marginTop: '2rem', padding: '5rem' }}
         >
           <EuiFlexGroup justifyContent="center" alignItems="center" direction="column">
-            <EuiCallOut title="Wait..." color="danger" iconType="alert">
+            <EuiCallOut title="Wait...!" color="danger" iconType="alert">
               This login form is currently not using secure auth; please use the following
               username and password:
               <ul>
