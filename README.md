@@ -1,7 +1,7 @@
 <h1 align="center"> GameCritic</h1>
 
 <p align="center">A Gaming Review Website</p>
-<p align="center"><a href="">Explore</a>
+<p align="center"><a href="https://ryan-jm.github.io/gamecritic-frontend/">Explore</a>
 
 ## Table Of Contents
 
@@ -15,7 +15,7 @@
 
 ## Overview
 
-The purpose of building this website was to solidify my learning with React and to make use of the [backend]() I had created a few weeks prior. I decided to utilise TypeScript for this project because I wanted to test my ability to pick up and learn new tech quickly (as I will be doing when on-the-job fulltime.)
+The purpose of building this website was to solidify my learning with React and to make use of the [backend](https://github.com/ryan-jm/gamecritic) I had created a few weeks prior. I decided to utilise TypeScript for this project because I wanted to test my ability to pick up and learn new tech quickly (as I will be doing when on-the-job fulltime.)
 
 **Concepts I have learned from this project:**
 
@@ -27,7 +27,7 @@ The purpose of building this website was to solidify my learning with React and 
 
 - How to _attempt_ to stay organised when working with large scope.
 
-- Hosting with [Netlify]().
+- Hosting with [GitHub Pages](https://ryan-jm.github.io/gamecritic-frontend/).
 
 - Incorporating JWTs within a frontend and utilising them with an API.
 
@@ -37,7 +37,7 @@ The purpose of building this website was to solidify my learning with React and 
 
 ## Getting Started
 
-If you would like to view this website, you can [click here]() to view and interact with it through your browser (Firefox/Chrome recommended for the larger range of support for WebAPI features). Alternatively, you can follow the steps below to have it operating locally on your machine.
+If you would like to view this website, you can [click here](https://ryan-jm.github.io/gamecritic-frontend/) to view and interact with it through your browser (Firefox/Chrome recommended for the larger range of support for WebAPI features). Alternatively, you can follow the steps below to have it operating locally on your machine.
 
 ### Prerequisites:
 
