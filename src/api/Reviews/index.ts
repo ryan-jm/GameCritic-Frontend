@@ -14,7 +14,7 @@ export function validate(token: string) {
 }
 
 export async function fetchAllReviews(sort_by?: string) {
-  let query = 'reviews?limit=1000';
+  let query = 'reviews?limit=1000&order=asc';
 
   switch (sort_by) {
     default:
