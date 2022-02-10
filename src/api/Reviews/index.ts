@@ -1,22 +1,35 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { IUser } from "../../types/auth.types";
-import { Comment, Review } from "../../types/review.types";
+import { IUser } from '../../types/auth.types';
+import { Comment, Review } from '../../types/review.types';
 
 type APIUser = IUser | null | undefined;
 
 const client = axios.create({
-  baseURL: "https://gamecritic.herokuapp.com/api/",
+  baseURL: 'https://gamecritic.herokuapp.com/api/',
 });
 
 export function validate(token: string) {
-  client.defaults.headers.common["token"] = token;
+  client.defaults.headers.common['token'] = token;
 }
 
-export async function fetchAllReviews() {
+export async function fetchAllReviews(sort_by?: string) {
+  let query = 'reviews?limit=1000';
+
+  switch (sort_by) {
+    default:
+      break;
+    case 'votes':
+      query = 'reviews?limit=1000&sort_by=votes';
+      break;
+    case 'created_at':
+      query = 'reviews?limit=1000&sort_by=created_at';
+      break;
+  }
+
   const {
     data: { reviews },
-  } = await client.get("reviews?limit=1000");
+  } = await client.get(query);
   return reviews;
 }
 
