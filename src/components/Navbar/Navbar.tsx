@@ -7,12 +7,12 @@ import UserMenu from './UserMenu';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isAuthed } = useAuth();
 
   return (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem border="right">
-        <Link to={user ? '/' : '/dashboard'}>
+        <Link to={!isAuthed ? '/' : '/dashboard'}>
           <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
         </Link>
       </EuiHeaderSectionItem>
