@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GameCritic-Frontend/static/css/main.5d116cb9.css",
-    "main.js": "/GameCritic-Frontend/static/js/main.968cc944.js",
+    "main.js": "/GameCritic-Frontend/static/js/main.be48cef5.js",
     "icon.accessibility.js": "/GameCritic-Frontend/static/js/icon.accessibility.2ad45f6a.chunk.js",
     "icon.aggregate.js": "/GameCritic-Frontend/static/js/icon.aggregate.16f5d312.chunk.js",
     "icon.alert.js": "/GameCritic-Frontend/static/js/icon.alert.39b4f27f.chunk.js",
@@ -442,7 +442,7 @@
     "static/media/login.svg": "/GameCritic-Frontend/static/media/login.4cfa628dd498c50fef45d10394778818.svg",
     "index.html": "/GameCritic-Frontend/index.html",
     "main.5d116cb9.css.map": "/GameCritic-Frontend/static/css/main.5d116cb9.css.map",
-    "main.968cc944.js.map": "/GameCritic-Frontend/static/js/main.968cc944.js.map",
+    "main.be48cef5.js.map": "/GameCritic-Frontend/static/js/main.be48cef5.js.map",
     "icon.accessibility.2ad45f6a.chunk.js.map": "/GameCritic-Frontend/static/js/icon.accessibility.2ad45f6a.chunk.js.map",
     "icon.aggregate.16f5d312.chunk.js.map": "/GameCritic-Frontend/static/js/icon.aggregate.16f5d312.chunk.js.map",
     "icon.alert.39b4f27f.chunk.js.map": "/GameCritic-Frontend/static/js/icon.alert.39b4f27f.chunk.js.map",
@@ -882,6 +882,6 @@
   },
   "entrypoints": [
     "static/css/main.5d116cb9.css",
-    "static/js/main.968cc944.js"
+    "static/js/main.be48cef5.js"
   ]
 }
