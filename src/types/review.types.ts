@@ -1,5 +1,3 @@
-import type { SetStateAction } from 'react';
-
 export enum ReviewActionKind {
   VOTE_ADD = 'VOTE_ADD',
   VOTE_REMOVE = 'VOTE_REMOVE',
