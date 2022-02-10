@@ -7,7 +7,7 @@ import ReviewFilter from '../components/Reviews/ReviewFilter';
 import ReviewList from '../components/Reviews/ReviewList';
 import * as dataHelper from '../services/data';
 import { useAuth } from '../stores/AuthContext';
-import { ReviewAction, ReviewActionKind, ReviewState } from '../types/review.types';
+import { IReviewAction, ReviewActionKind, ReviewState } from '../types/review.types';
 
 /**
  * It takes a state and an action, and returns a new state
@@ -15,7 +15,7 @@ import { ReviewAction, ReviewActionKind, ReviewState } from '../types/review.typ
  * action - The action that triggered the reducer.
  * returns -  The return value of the reducer is the new state of the application.
  */
-const ReviewReducer = (state: ReviewState, action: ReviewAction) => {
+const ReviewReducer = (state: ReviewState, action: IReviewAction) => {
   const { type, payload, overwrite } = action;
 
   switch (type) {
