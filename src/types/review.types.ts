@@ -1,7 +1,10 @@
+import type { SetStateAction } from 'react';
+
 export enum ReviewActionKind {
-  VOTE_ADD = "VOTE_ADD",
-  VOTE_REMOVE = "VOTE_REMOVE",
-  REPLACE_ALL = "REPLACE_ALL",
+  VOTE_ADD = 'VOTE_ADD',
+  VOTE_REMOVE = 'VOTE_REMOVE',
+  REPLACE_ALL = 'REPLACE_ALL',
+  RESTORE = 'RESTORE',
 }
 
 export type Review = {
@@ -50,10 +53,10 @@ export type Comment = {
 };
 
 export type Category =
-  | "push-your-luck"
-  | "dexterity"
-  | "hidden-roles"
-  | "strategy"
-  | "roll-and-write"
-  | "deck-building"
-  | "engine-building";
+  | 'push-your-luck'
+  | 'dexterity'
+  | 'hidden-roles'
+  | 'strategy'
+  | 'roll-and-write'
+  | 'deck-building'
+  | 'engine-building';
