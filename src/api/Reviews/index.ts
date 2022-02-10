@@ -102,3 +102,39 @@ export async function patchComment(comment_id: number, body: string) {
 export async function removeComment(comment_id: number) {
   await client.delete(`comments/${comment_id}`);
 }
+
+export async function hostImage(image: Blob) {
+  const formData = new FormData();
+  formData.append('File', image);
+  const {
+    data: {
+      image: { url },
+    },
+  } = await axios.post(
+    `https://freeimage.host/api/1/upload?key=${process.env.IMGAPI}`,
+    formData
+  );
+  return url;
+}
+
+export async function postReview(
+  title: string,
+  review_img_url: string,
+  review_body: string,
+  designer: string,
+  category: string,
+  owner: string
+) {
+  const {
+    data: { review },
+  } = await client.post('reviews', {
+    owner,
+    title,
+    review_img_url,
+    review_body,
+    designer,
+    category,
+  });
+
+  return review;
+}
