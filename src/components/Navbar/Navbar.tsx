@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem border="right">
-        <Link to="/">
+        <Link to={user ? '/' : '/dashboard'}>
           <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
         </Link>
       </EuiHeaderSectionItem>
