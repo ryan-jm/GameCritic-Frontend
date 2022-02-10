@@ -80,3 +80,25 @@ export async function getReviewComments(review_id: number | undefined) {
 
   return finalComments;
 }
+
+export async function insertComment(
+  review_id: number | undefined,
+  username: string | undefined,
+  body: string
+) {
+  const {
+    data: { comment },
+  } = await client.post(`reviews/${review_id}/comments`, { username, body });
+  return comment;
+}
+
+export async function patchComment(comment_id: number, body: string) {
+  const {
+    data: { comment },
+  } = await client.patch(`comments/${comment_id}`, { comment_body: body });
+  console.log(comment);
+}
+
+export async function removeComment(comment_id: number) {
+  await client.delete(`comments/${comment_id}`);
+}
