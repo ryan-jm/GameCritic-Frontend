@@ -6,6 +6,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
+import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import IndividualReview from './pages/IndividualReview';
@@ -41,6 +42,7 @@ function App() {
                 }
               />
             </Route>
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </AuthProvider>
       </EuiProvider>
