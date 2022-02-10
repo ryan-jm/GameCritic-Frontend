@@ -18,7 +18,7 @@ export type Review = {
   hasVoted?: boolean;
 };
 
-export interface ReviewAction {
+export interface IReviewAction {
   type: ReviewActionKind;
   payload?: Review;
   overwrite?: Review[];
@@ -28,12 +28,12 @@ export type ReviewState = Array<Review>;
 
 export interface IReviewProps {
   data: Array<Review>;
-  dispatch: React.Dispatch<ReviewAction>;
+  dispatch: React.Dispatch<IReviewAction>;
 }
 
 export interface IReviewCardProps {
   review: Review;
-  dispatch: React.Dispatch<ReviewAction>;
+  dispatch: React.Dispatch<IReviewAction>;
 }
 
 export interface ICardImageProps {
@@ -58,3 +58,8 @@ export type Category =
   | 'roll-and-write'
   | 'deck-building'
   | 'engine-building';
+
+export interface IModalProps {
+  visible: boolean;
+  toggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
