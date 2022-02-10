@@ -33,7 +33,7 @@ The purpose of building this website was to solidify my learning with React and 
 
 ## Built With
 
-<img src="https://img.shields.io/badge/TypeScript-2D79C7?style=for-the-badge&logo=typescript&logoColor=F7DF1E" alt="TypeScript"/> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=60DAFB" alt="React" /> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=FFF" alt="Axios" /> <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT">
+<img src="https://img.shields.io/badge/TypeScript-1D1E23?style=for-the-badge&logo=typescript&logoColor=2D79C7" alt="TypeScript"/> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=60DAFB" alt="React" /> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=FFF" alt="Axios" /> <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT">
 
 ## Getting Started
 
