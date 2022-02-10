@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+<h1 align="center"> GameCritic</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">A Gaming Review Website</p>
+<p align="center"><a href="">Explore</a>
 
-## Available Scripts
+## Table Of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-### `yarn start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The purpose of building this website was to solidify my learning with React and to make use of the [backend]() I had created a few weeks prior. I decided to utilise TypeScript for this project because I wanted to test my ability to pick up and learn new tech quickly (as I will be doing when on-the-job fulltime.)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Concepts I have learned from this project:**
 
-### `yarn test`
+- How to create stateful single-page-applications utilising React.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- How to incorporate context and create my own custom hooks.
 
-### `yarn build`
+- The benefits of strict typing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- How to _attempt_ to stay organised when working with large scope.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Hosting with [Netlify]().
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Incorporating JWTs within a frontend and utilising them with an API.
 
-### `yarn eject`
+## Built With
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="https://img.shields.io/badge/TypeScript-2D79C7?style=for-the-badge&logo=typescript&logoColor=F7DF1E" alt="TypeScript"/> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=60DAFB" alt="React" /> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=FFF" alt="Axios" /> <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you would like to view this website, you can [click here]() to view and interact with it through your browser (Firefox/Chrome recommended for the larger range of support for WebAPI features). Alternatively, you can follow the steps below to have it operating locally on your machine.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Prerequisites:
 
-## Learn More
+- Fork and clone the repository on your machine.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Make sure you have [Node >v14.x](https://nodejs.org/en/) installed.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Installation:
+
+- `cd` into the cloned repo and run `yarn install` to install the dependencies.
+
+- Once all dependencies are installed, you can use the command `yarn start` to begin hosting a local development server for the website to be hosted upon.
+
+## License
+
+This API is released under the terms of MIT License. For more details [click here](/LICENSE).
+
+## Acknowledgements
+
+Thanks to the whole team at [Northcoders](https://northcoders.com/) for providing such an incredible learning environment.
