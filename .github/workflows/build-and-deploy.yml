@@ -7,9 +7,6 @@ on:
 
 jobs:
   deploy:
-    uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          token: "${{ secrets.GH_TOKEN }}"
     name: Setup Environment
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +20,11 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
+
+      - name: Setup git config
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: "${{ secrets.GH_TOKEN }}"
 
       - name: Deploy to GitHub Pages
         run: yarn deploy
