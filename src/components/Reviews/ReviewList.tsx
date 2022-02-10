@@ -4,7 +4,6 @@ import React from 'react';
 
 import { IReviewProps, Review } from '../../types/review.types';
 import ReviewCard from './ReviewCard';
-import ReviewFilter from './ReviewFilter';
 
 const ReviewList = ({ data, dispatch }: IReviewProps) => {
   const [pageCount, setPageCount] = React.useState<number | undefined>();
@@ -38,12 +37,7 @@ const ReviewList = ({ data, dispatch }: IReviewProps) => {
 
   return (
     <>
-      <EuiFlexGroup justifyContent="spaceAround" style={{ marginTop: '3rem' }}>
-        <EuiFlexItem grow={false}>
-          <ReviewFilter />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-      <EuiFlexGrid columns={4} style={{}}>
+      <EuiFlexGrid columns={4}>
         {pageData ? (
           pageData.map((review: Review) => {
             return (

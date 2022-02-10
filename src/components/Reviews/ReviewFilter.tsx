@@ -7,11 +7,12 @@ interface IOption {
   icon: JSX.Element;
 }
 
-const ReviewFilter = () => {
+const ReviewFilter = ({ filter }: any) => {
   const [selectedOption, setSelectedOption] = useState<string>('all');
 
   const handleSelect = (id: string) => {
     setSelectedOption(() => id);
+    filter(() => id);
   };
 
   const options = [
