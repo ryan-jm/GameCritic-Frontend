@@ -96,9 +96,7 @@ export async function insertComment(
 }
 
 export async function patchComment(comment_id: number, body: string) {
-  const {
-    data: { comment },
-  } = await client.patch(`comments/${comment_id}`, { comment_body: body });
+  await client.patch(`comments/${comment_id}`, { comment_body: body });
 }
 
 export async function removeComment(comment_id: number) {
