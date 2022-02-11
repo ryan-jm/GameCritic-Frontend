@@ -1,10 +1,10 @@
 import {
-    EuiHeaderSectionItemButton,
-    EuiIcon,
-    EuiKeyPadMenu,
-    EuiKeyPadMenuItem,
-    EuiPopover,
-    useGeneratedHtmlId,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiPopover,
+  useGeneratedHtmlId,
 } from '@elastic/eui';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ const AppMenu = () => {
       aria-label="App Menu"
       onClick={onMenuButtonClick}
     >
-      <EuiIcon type="apps" size="m" />
+      <EuiIcon type="apps" size="l" />
     </EuiHeaderSectionItemButton>
   );
 
@@ -50,7 +50,7 @@ const AppMenu = () => {
       <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
         <EuiKeyPadMenuItem
           label="Reviews"
-          isSelected={location.pathname.startsWith('/reviews')}
+          isSelected={location.pathname.endsWith('/reviews')}
           onClick={() => navigate('/reviews')}
         >
           <EuiIcon type="discoverApp" size="xl" />
@@ -58,18 +58,20 @@ const AppMenu = () => {
 
         <EuiKeyPadMenuItem
           label="Dashboard"
-          isSelected={location.pathname === '/'}
+          isSelected={
+            location.pathname.endsWith('/') || location.pathname.endsWith('/dashboard')
+          }
           onClick={() => navigate('/dashboard')}
         >
           <EuiIcon type="dashboardApp" size="xl" />
         </EuiKeyPadMenuItem>
 
         <EuiKeyPadMenuItem
-          label="Favourites"
-          isSelected={location.pathname.startsWith('/favourites')}
-          onClick={() => navigate('/favourites')}
+          label="Categories"
+          isSelected={location.pathname.startsWith('/categories')}
+          onClick={() => navigate('/categories')}
         >
-          <EuiIcon type="heartbeatApp" size="xl" />
+          <EuiIcon type="spacesApp" size="xl" />
         </EuiKeyPadMenuItem>
 
         <EuiKeyPadMenuItem
