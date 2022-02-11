@@ -28,12 +28,12 @@ const IndividualReview = () => {
 
   return (
     <EuiPage paddingSize="none" style={{ marginTop: '3rem' }}>
-      <EuiPageBody paddingSize="l">
+      <EuiPageBody paddingSize="l" restrictWidth={true}>
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="l"
-          style={{ width: '40%' }}
+          style={{ width: '100%' }}
         >
           <EuiCard
             layout="horizontal"
@@ -80,7 +80,7 @@ const IndividualReview = () => {
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="l"
-          style={{ marginTop: '2rem', width: '40%' }}
+          style={{ marginTop: '2rem', width: '100%' }}
         >
           <Comment reviewId={review?.review_id} />
         </EuiPageContent>

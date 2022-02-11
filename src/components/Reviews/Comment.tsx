@@ -164,7 +164,7 @@ const Comment = ({ reviewId }: ICommentProps) => {
         style={{ width: '100%' }}
       >
         {isLoading ? (
-          <p style={{ width: '35rem' }}>
+          <p style={{ width: '100%' }}>
             <EuiLoadingContent lines={2} />
             <EuiSpacer size="l" />
             <EuiLoadingContent lines={2} />

@@ -44,7 +44,7 @@ const initialStats = {
 };
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [stats, setStats] = useState<IStats>(initialStats);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -105,7 +105,14 @@ const Dashboard = () => {
             <EuiButton fill iconType="pencil" onClick={() => setModalVisible(true)}>
               Create
             </EuiButton>,
-            <EuiButton iconType="exit" color="accent">
+            <EuiButton
+              iconType="exit"
+              color="accent"
+              onClick={() => {
+                logout(user?.username ?? '');
+                navigate('/');
+              }}
+            >
               Logout
             </EuiButton>,
           ]}
@@ -214,7 +221,7 @@ const Dashboard = () => {
             <EuiFlexItem>
               <EuiPanel>
                 <EuiText textAlign="center">
-                  <h2>Your feed</h2>
+                  <h2>Your favourites</h2>
                 </EuiText>
                 <EuiHorizontalRule size="half" />
                 <EuiFlexGroup gutterSize="l" direction="column">
@@ -249,6 +256,7 @@ const Dashboard = () => {
                   buttonContent="What's the purpose of this..?!"
                   paddingSize="l"
                   arrowDisplay="right"
+                  initialIsOpen
                 >
                   <EuiPanel color="subdued">
                     <EuiText textAlign="left">
@@ -272,6 +280,7 @@ const Dashboard = () => {
                   buttonContent="Cool, so how was it built..?"
                   paddingSize="l"
                   arrowDisplay="right"
+                  initialIsOpen
                 >
                   <EuiPanel color="subdued">
                     <EuiText textAlign="left">
