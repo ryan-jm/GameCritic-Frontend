@@ -28,7 +28,7 @@ const ReviewFilter = ({ filter }: any) => {
     },
     {
       id: 'created_at',
-      label: 'Newest reviews',
+      label: 'Latest reviews',
       icon: <EuiIcon type="dot" color="accent" />,
     },
   ];
