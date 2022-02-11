@@ -13,7 +13,7 @@ const Navbar = () => {
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem border="right">
         <Link to={!isAuthed ? '/' : '/dashboard'}>
-          <EuiHeaderLogo iconType="dashboardApp">GameCritic</EuiHeaderLogo>
+          <EuiHeaderLogo iconType="emsApp">GameCritic</EuiHeaderLogo>
         </Link>
       </EuiHeaderSectionItem>
 
