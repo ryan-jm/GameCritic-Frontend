@@ -1,10 +1,10 @@
-import { EuiFlexGrid, EuiPageTemplate } from '@elastic/eui';
 import { useEffect, useState } from 'react';
 import { BiCopyAlt, BiCrown, BiDice5, BiMask, BiRocket, BiShieldAlt2, BiWorld } from 'react-icons/bi';
 
-import * as API from '../api/Reviews';
-import CategoryList from '../components/Categories/CategoryList';
-import { useAuth } from '../stores/AuthContext';
+import * as API from '../../api/Reviews';
+import CategoryList from '../../components/Categories/CategoryList';
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import Layout from './Categories.layout';
 
 const Categories = () => {
   const { user } = useAuth();
@@ -46,11 +46,9 @@ const Categories = () => {
   };
 
   return (
-    <EuiPageTemplate restrictWidth={true} template="empty" style={{ marginTop: '4rem' }}>
-      <EuiFlexGrid columns={3}>
-        <CategoryList data={categories} icons={icons} />
-      </EuiFlexGrid>
-    </EuiPageTemplate>
+    <Layout>
+      <CategoryList data={categories} icons={icons} />
+    </Layout>
   );
 };
 

@@ -1,25 +1,25 @@
 import {
-    EuiButton,
-    EuiButtonEmpty,
-    EuiDescribedFormGroup,
-    EuiFieldText,
-    EuiFilePicker,
-    EuiForm,
-    EuiFormRow,
-    EuiModal,
-    EuiModalBody,
-    EuiModalFooter,
-    EuiModalHeader,
-    EuiModalHeaderTitle,
-    EuiSelect,
-    EuiTextArea,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiDescribedFormGroup,
+  EuiFieldText,
+  EuiFilePicker,
+  EuiForm,
+  EuiFormRow,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiSelect,
+  EuiTextArea,
 } from '@elastic/eui';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as API from '../../api/Reviews';
-import { useAuth } from '../../stores/AuthContext';
-import { IModalProps } from '../../types/review.types';
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import { IModalProps } from './types';
 
 const CreateReview = ({ visible, toggle }: IModalProps) => {
   const { user } = useAuth();

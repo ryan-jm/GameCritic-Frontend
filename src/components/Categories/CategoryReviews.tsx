@@ -2,7 +2,7 @@ import { EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon, EuiLink } from '@elastic/e
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Review } from '../../types/review.types';
+import { Review } from '../Reviews/types';
 
 interface ICategoryReviewsProps {
   reviews: Array<Review> | Array<any>;

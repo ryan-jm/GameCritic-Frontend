@@ -1,11 +1,7 @@
 import { EuiFacetButton, EuiFacetGroup, EuiIcon } from '@elastic/eui';
 import { useState } from 'react';
 
-interface IOption {
-  id: string;
-  label: string;
-  icon: JSX.Element;
-}
+import { IReviewOption } from './types';
 
 const ReviewFilter = ({ filter }: any) => {
   const [selectedOption, setSelectedOption] = useState<string>('all');
@@ -36,7 +32,7 @@ const ReviewFilter = ({ filter }: any) => {
   const OptionList = (align: string) => {
     return (
       <>
-        {options.map((option: IOption) => {
+        {options.map((option: IReviewOption) => {
           return (
             <EuiFacetButton
               key={option.id}

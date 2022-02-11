@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import Hero from '../components/Common/Hero';
-import { useAuth } from '../stores/AuthContext';
+import Hero from '../../components/Home/Hero';
+import { useAuth } from '../../contexts/Auth/AuthContext';
 
 const Home = () => {
   const { isAuthed } = useAuth();

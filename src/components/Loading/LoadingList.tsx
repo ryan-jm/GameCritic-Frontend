@@ -1,9 +1,10 @@
 import { EuiFlexGrid } from '@elastic/eui';
 
 import LoadingCard from './LoadingCard';
+import { ILoadingListProps } from './types';
 
-const LoadingList = () => {
-  const cardList = new Array<any>(1, 2, 3, 4, 5, 6, 7, 8);
+const LoadingList = ({ itemCount }: ILoadingListProps) => {
+  const cardList: Array<any> = Array.apply(null, Array(itemCount)).map((x, i) => i);
   cardList.fill(<LoadingCard />);
 
   return (

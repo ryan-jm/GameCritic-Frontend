@@ -1,18 +1,18 @@
 import {
-    EuiAvatar,
-    EuiFlexGroup,
-    EuiFlexItem,
-    EuiHeaderSectionItemButton,
-    EuiLink,
-    EuiPopover,
-    EuiSpacer,
-    EuiText,
-    useGeneratedHtmlId,
+  EuiAvatar,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeaderSectionItemButton,
+  EuiLink,
+  EuiPopover,
+  EuiSpacer,
+  EuiText,
+  useGeneratedHtmlId,
 } from '@elastic/eui';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../stores/AuthContext';
+import { useAuth } from '../../contexts/Auth/AuthContext';
 
 const UserMenu = () => {
   const { user, logout } = useAuth();
@@ -44,11 +44,7 @@ const UserMenu = () => {
       aria-label="Account menu"
       onClick={onMenuButtonClick}
     >
-      <EuiAvatar
-        name={user?.name ?? ''}
-        size="s"
-        imageUrl={user?.avatar_url ?? ''}
-      />
+      <EuiAvatar name={user?.name ?? ''} size="s" imageUrl={user?.avatar_url ?? ''} />
     </EuiHeaderSectionItemButton>
   );
 
@@ -62,11 +58,7 @@ const UserMenu = () => {
       panelPaddingSize="none"
     >
       <div style={{ width: 320 }}>
-        <EuiFlexGroup
-          gutterSize="m"
-          className="euiHeaderProfile"
-          responsive={false}
-        >
+        <EuiFlexGroup gutterSize="m" className="euiHeaderProfile" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiAvatar
               name={user?.name ?? ''}

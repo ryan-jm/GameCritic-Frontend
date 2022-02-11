@@ -16,11 +16,7 @@ const CallToAction = () => {
   };
 
   return (
-    <EuiFlexGroup
-      justifyContent="center"
-      alignItems="center"
-      direction="column"
-    >
+    <EuiFlexGroup justifyContent="center" alignItems="center" direction="column">
       <EuiSpacer />
       <EuiFieldText
         placeholder="Enter your email"

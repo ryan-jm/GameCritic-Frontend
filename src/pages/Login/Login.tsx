@@ -15,8 +15,8 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import LoginIllu from '../assets/login.svg';
-import { useAuth } from '../stores/AuthContext';
+import LoginIllu from '../../assets/login.svg';
+import { useAuth } from '../../contexts/Auth/AuthContext';
 
 const Login = () => {
   const { login, user } = useAuth();

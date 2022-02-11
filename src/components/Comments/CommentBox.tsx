@@ -2,14 +2,8 @@ import { EuiButtonIcon, EuiFieldText, EuiText } from '@elastic/eui';
 import React, { useEffect, useState } from 'react';
 
 import * as API from '../../api/Reviews';
-import { useAuth } from '../../stores/AuthContext';
-import { Comment } from '../../types/review.types';
-
-interface ICommentBoxProps {
-  editState: number;
-  comment: Comment;
-  clear: React.Dispatch<React.SetStateAction<number>>;
-}
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import { ICommentBoxProps } from './types';
 
 const CommentBox = ({ editState, comment, clear }: ICommentBoxProps) => {
   const { user } = useAuth();

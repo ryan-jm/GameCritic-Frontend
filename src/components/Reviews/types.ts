@@ -40,16 +40,6 @@ export interface ICardImageProps {
   src: string;
   alt?: string;
 }
-
-export type Comment = {
-  comment_id: number;
-  body: string;
-  author: string;
-  review_id: number;
-  created_at: string;
-  avatar_url?: string;
-};
-
 export type Category =
   | 'push-your-luck'
   | 'dexterity'
@@ -58,6 +48,12 @@ export type Category =
   | 'roll-and-write'
   | 'deck-building'
   | 'engine-building';
+
+export interface IReviewOption {
+  id: string;
+  label: string;
+  icon: JSX.Element;
+}
 
 export interface IModalProps {
   visible: boolean;

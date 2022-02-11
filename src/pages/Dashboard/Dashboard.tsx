@@ -1,39 +1,32 @@
 import {
-    EuiAccordion,
-    EuiAvatar,
-    EuiButton,
-    EuiCard,
-    EuiFlexGrid,
-    EuiFlexGroup,
-    EuiFlexItem,
-    EuiHealth,
-    EuiHorizontalRule,
-    EuiIcon,
-    EuiLink,
-    EuiPage,
-    EuiPageBody,
-    EuiPageContentBody,
-    EuiPageHeader,
-    EuiPanel,
-    EuiSpacer,
-    EuiStat,
-    EuiText,
+  EuiAccordion,
+  EuiAvatar,
+  EuiButton,
+  EuiCard,
+  EuiFlexGrid,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHealth,
+  EuiHorizontalRule,
+  EuiIcon,
+  EuiLink,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContentBody,
+  EuiPageHeader,
+  EuiPanel,
+  EuiSpacer,
+  EuiStat,
+  EuiText,
 } from '@elastic/eui';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as API from '../api/Reviews';
-import CreateReview from '../components/Reviews/CreateReview';
-import { useAuth } from '../stores/AuthContext';
-import { Review } from '../types/review.types';
-
-interface IStats {
-  reviewsPosted: number;
-  reviewsLiked: number;
-  commentsPosted: number;
-  commentsLiked: number;
-  favouriteReviews: Array<Review | null>;
-}
+import * as API from '../../api/Reviews';
+import CreateReview from '../../components/Reviews/CreateReview';
+import { Review } from '../../components/Reviews/types';
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import { IStats } from './types';
 
 const initialStats = {
   reviewsPosted: 0,
@@ -87,7 +80,7 @@ const Dashboard = () => {
 
   return (
     <EuiPage paddingSize="l">
-      <EuiPageBody>
+      <EuiPageBody paddingSize="l" restrictWidth={true}>
         <EuiPageHeader
           pageTitle={
             <>
@@ -119,7 +112,7 @@ const Dashboard = () => {
           bottomBorder
           style={{ marginTop: '4rem' }}
         />
-        <EuiPageContentBody restrictWidth={'75%'}>
+        <EuiPageContentBody style={{ width: '100%' }}>
           <EuiFlexGrid columns={1} gutterSize="l">
             <EuiFlexItem>
               <EuiPanel>

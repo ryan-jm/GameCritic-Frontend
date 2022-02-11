@@ -1,8 +1,8 @@
 import { createContext, FC, useContext, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import * as Auth from '../api/Auth';
-import { IAuthContext, IUser } from '../types/auth.types';
+import * as Auth from '../../api/Auth';
+import { IAuthContext, IUser } from './types';
 
 const defaultState = {
   isAuthed: false,

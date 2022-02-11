@@ -1,15 +1,15 @@
 import {
-    EuiButton,
-    EuiEmptyPrompt,
-    EuiFlexGroup,
-    EuiFlexItem,
-    EuiImage,
-    EuiLink,
-    EuiPage,
-    EuiPageBody,
-    EuiPageContent,
-    EuiText,
-    EuiTitle,
+  EuiButton,
+  EuiEmptyPrompt,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiImage,
+  EuiLink,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiText,
+  EuiTitle,
 } from '@elastic/eui';
 import { useNavigate } from 'react-router-dom';
 

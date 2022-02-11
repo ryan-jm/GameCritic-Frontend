@@ -1,13 +1,13 @@
 import { EuiFlexGroup, EuiFlexItem, EuiPage, EuiPageBody, EuiPageContentBody } from '@elastic/eui';
 import React, { useCallback } from 'react';
 
-import * as API from '../api/Reviews';
-import LoadingList from '../components/Reviews/LoadingList';
-import ReviewFilter from '../components/Reviews/ReviewFilter';
-import ReviewList from '../components/Reviews/ReviewList';
-import * as dataHelper from '../services/data';
-import { useAuth } from '../stores/AuthContext';
-import { IReviewAction, ReviewActionKind, ReviewState } from '../types/review.types';
+import * as API from '../../api/Reviews';
+import LoadingList from '../../components/Loading/LoadingList';
+import ReviewFilter from '../../components/Reviews/ReviewFilter';
+import ReviewList from '../../components/Reviews/ReviewList';
+import { IReviewAction, ReviewActionKind, ReviewState } from '../../components/Reviews/types';
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import * as dataHelper from '../../utils/data';
 
 /**
  * It takes a state and an action, and returns a new state
@@ -67,14 +67,12 @@ const Reviews = () => {
       });
     } else if (filter) {
       fetchReviews(filter).then((reviews) => {
-        console.log(reviews);
         dispatch({ type: ReviewActionKind.REPLACE_ALL, overwrite: reviews });
       });
     }
   }, [fetchReviews, isLoading, user, filter]);
 
   React.useEffect(() => {
-    console.log(filter);
     setIsLoading(true);
   }, [filter]);
 
@@ -88,7 +86,7 @@ const Reviews = () => {
             </EuiFlexItem>
           </EuiFlexGroup>
           {isLoading ? (
-            <LoadingList />
+            <LoadingList itemCount={8} />
           ) : (
             <ReviewList data={reviewState} dispatch={dispatch} />
           )}

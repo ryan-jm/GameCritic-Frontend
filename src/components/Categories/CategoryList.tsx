@@ -7,21 +7,12 @@ import {
     EuiModalBody,
     EuiModalHeader,
     EuiModalHeaderTitle,
-    IconType,
 } from '@elastic/eui';
 import { useState } from 'react';
 
-import { Review } from '../../types/review.types';
+import { Review } from '../Reviews/types';
 import CategoryReviews from './CategoryReviews';
-
-interface ICategoryIcon {
-  [index: string]: IconType;
-}
-
-interface ICategoryListProps {
-  data: Array<any>;
-  icons: ICategoryIcon;
-}
+import { ICategoryListProps } from './types';
 
 const CategoryList = ({ data, icons }: ICategoryListProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);

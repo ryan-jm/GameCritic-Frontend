@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-import { IUser } from '../../types/auth.types';
-import { Comment, Review } from '../../types/review.types';
+import { IComment } from '../../components/Comments/types';
+import { Review } from '../../components/Reviews/types';
+import { IUser } from '../../contexts/Auth/types';
 
 type APIUser = IUser | null | undefined;
 
@@ -74,7 +75,7 @@ export async function getReviewComments(review_id: number | undefined) {
   } = await client.get(`reviews/${review_id}/comments`);
 
   const finalComments = await Promise.all(
-    comments.map(async (comment: Comment) => {
+    comments.map(async (comment: IComment) => {
       const user = await getUser(comment.author);
       return { ...comment, avatar_url: user?.avatar_url };
     })
@@ -98,7 +99,6 @@ export async function patchComment(comment_id: number, body: string) {
   const {
     data: { comment },
   } = await client.patch(`comments/${comment_id}`, { comment_body: body });
-  console.log(comment);
 }
 
 export async function removeComment(comment_id: number) {

@@ -1,4 +1,4 @@
-import { Review } from '../types/review.types';
+import { Review } from '../components/Reviews/types';
 
 export function formatReviews(reviews: Array<Review>, votes: Array<any>) {
   return reviews.map((review: Review) => {

@@ -3,18 +3,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as API from '../../api/Reviews';
-import { useAuth } from '../../stores/AuthContext';
-import { IReviewAction, Review, ReviewActionKind } from '../../types/review.types';
-
-interface IReviewCardProps {
-  review: Review;
-  dispatch: React.Dispatch<IReviewAction>;
-}
-
-interface ICardImageProps {
-  src: string;
-  alt?: string;
-}
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import { ICardImageProps, IReviewCardProps, ReviewActionKind } from './types';
 
 const CardImage = ({ src, alt }: ICardImageProps) => {
   return (

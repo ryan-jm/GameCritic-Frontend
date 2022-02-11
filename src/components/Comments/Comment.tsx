@@ -17,13 +17,9 @@ import {
 import React from 'react';
 
 import * as API from '../../api/Reviews';
-import { useAuth } from '../../stores/AuthContext';
-import { Comment as IComment } from '../../types/review.types';
+import { useAuth } from '../../contexts/Auth/AuthContext';
 import CommentBox from './CommentBox';
-
-interface ICommentProps {
-  reviewId: number | undefined;
-}
+import { IComment, ICommentProps } from './types';
 
 const Comment = ({ reviewId }: ICommentProps) => {
   const { user } = useAuth();

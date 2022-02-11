@@ -1,7 +1,7 @@
 import { EuiButton, EuiHeader, EuiHeaderLogo, EuiHeaderSection, EuiHeaderSectionItem } from '@elastic/eui';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../stores/AuthContext';
+import { useAuth } from '../../contexts/Auth/AuthContext';
 import AppMenu from './AppMenu';
 import UserMenu from './UserMenu';
 

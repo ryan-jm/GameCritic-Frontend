@@ -2,8 +2,8 @@
 import { EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
 import React from 'react';
 
-import { IReviewProps, Review } from '../../types/review.types';
 import ReviewCard from './ReviewCard';
+import { IReviewProps, Review } from './types';
 
 const ReviewList = ({ data, dispatch }: IReviewProps) => {
   const [pageCount, setPageCount] = React.useState<number | undefined>();

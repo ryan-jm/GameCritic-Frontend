@@ -2,11 +2,11 @@ import { EuiAvatar, EuiCard, EuiEmptyPrompt, EuiImage, EuiPage, EuiPageBody, Eui
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import * as API from '../api/Reviews';
-import Comment from '../components/Reviews/Comment';
-import { useAuth } from '../stores/AuthContext';
-import { IUser } from '../types/auth.types';
-import { Review } from '../types/review.types';
+import * as API from '../../api/Reviews';
+import Comment from '../../components/Comments/Comment';
+import { Review } from '../../components/Reviews/types';
+import { useAuth } from '../../contexts/Auth/AuthContext';
+import { IUser } from '../../contexts/Auth/types';
 
 const IndividualReview = () => {
   let { review_id } = useParams();
