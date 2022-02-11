@@ -39,6 +39,10 @@ const CreateReview = ({ visible, toggle }: IModalProps) => {
     });
   };
 
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
+    setCategory(() => event?.target?.value ?? '');
+  };
+
   const handleCreate = async () => {
     setIsLoading(true);
     API.validate(user?.token ?? '');
@@ -105,7 +109,8 @@ const CreateReview = ({ visible, toggle }: IModalProps) => {
                 <EuiFormRow hasEmptyLabelSpace>
                   <EuiSelect
                     hasNoInitialSelection
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={(e) => handleSelect(e)}
+                    value={category}
                     options={[
                       { value: 'strategy', text: 'Strategy' },
                       { value: 'hidden-roles', text: 'Hidden Roles' },
@@ -157,6 +162,7 @@ const CreateReview = ({ visible, toggle }: IModalProps) => {
               color="accent"
               onClick={() => handleCreate()}
               isLoading={isLoading}
+              isDisabled={!title || !category || !designer || !body}
             >
               Post
             </EuiButton>
