@@ -52,7 +52,7 @@ const Hero = () => {
                 <EuiTitle size="xxs">
                   <span>Curious? </span>
                 </EuiTitle>
-                <EuiLink href="https://github.com/ryan-jm/gamecritic-frontend">
+                <EuiLink href="https://github.com/ryan-jm/gamecritic-frontend#readme">
                   Read documentation
                 </EuiLink>
               </>
