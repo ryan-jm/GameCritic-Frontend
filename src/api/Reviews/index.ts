@@ -13,7 +13,7 @@ export function validate(token: string) {
   client.defaults.headers.common['token'] = token;
 }
 
-export async function fetchAllReviews(sort_by?: string) {
+export async function fetchAllReviews(sort_by?: string, filter?: string) {
   let query = 'reviews?limit=1000&order=asc';
 
   switch (sort_by) {
@@ -25,6 +25,8 @@ export async function fetchAllReviews(sort_by?: string) {
     case 'created_at':
       query = 'reviews?limit=1000&sort_by=created_at';
       break;
+    case 'category':
+      query = `reviews?limit=1000&category=${filter}`;
   }
 
   const {
@@ -137,4 +139,11 @@ export async function postReview(
   });
 
   return review;
+}
+
+export async function getCategories() {
+  const {
+    data: { categories },
+  } = await client.get('categories');
+  return categories;
 }
